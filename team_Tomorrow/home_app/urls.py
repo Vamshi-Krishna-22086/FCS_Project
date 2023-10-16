@@ -19,5 +19,6 @@ from django.urls import path,include
 from home_app import views
 
 urlpatterns = [
-    path('',views.landing_page,name='landing_page')
+    path('',views.landing_page,name='landing_page'),
+    path('register/',views.registration_page,name='registration_page')
 ]

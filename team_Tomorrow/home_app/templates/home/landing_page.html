@@ -96,7 +96,8 @@
             </div>
         </div>
 
-        <button onclick="location.href='#'">Register</button>
+        <button onclick="location.href='{% url 'registration_page'%}'">Register</button> 
+        {% comment %} Register button is calling landing_page.html through home_app urls.py by name=registration_page {% endcomment %}
     </section>
 
 
