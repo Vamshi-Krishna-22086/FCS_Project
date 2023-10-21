@@ -3,7 +3,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8" />
-    <title>Responsive Registration Form | CodingLab</title>
+    <title>User Registration</title>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
       * {
@@ -11,6 +11,10 @@
         padding: 0;
         box-sizing: border-box;
         font-family: "Poppins", sans-serif;
+      }
+      .content {
+        max-height: 550px; 
+        overflow-y: auto; 
       }
       body {
         height: 100vh;
@@ -112,7 +116,7 @@
       }
       form .button input {
         height: 100%;
-        width: 100%;
+        width: 40%;
         border-radius: 5px;
         border: none;
         color: #fff;
@@ -166,24 +170,52 @@
               <input type="text" placeholder="Enter your name" required />
             </div>
             <div class="input-box">
-              <span class="details">Username</span>
-              <input type="text" placeholder="Enter your username" required />
-            </div>
-            <div class="input-box">
               <span class="details">Email</span>
               <input type="text" placeholder="Enter your email" required />
             </div>
             <div class="input-box">
-              <span class="details">Phone Number</span>
-              <input type="text" placeholder="Enter your number" required />
+              <span class="details">House no</span>
+              <input type="number" min="1" placeholder="Enter your house no" required />
+            </div>
+            <div class="input-box">
+              <span class="details">Street</span>
+              <input type="text" placeholder="Enter your Street" required />
+            </div>
+            <div class="input-box">
+              <span class="details">Locality</span>
+              <input type="text" placeholder="Enter your locality" required />
+            </div>
+            <div class="input-box">
+              <span class="details">City</span>
+              <input type="text" placeholder="Enter your city" required />
+            </div>
+            <div class="input-box">
+              <span class="details">State</span>
+              <input type="text" placeholder="Enter your state" required />
+            </div>
+            <div class="input-box">
+              <span class="details">Country</span>
+              <input type="text" placeholder="Enter your country" required />
+            </div>
+            <div class="input-box">
+              <span class="details">Pincode</span>
+              <input type="number" placeholder="Enter your pincode" required />
+            </div>
+            <div class="input-box">
+              <span class="details">Mobile no</span>
+              <input type="number" placeholder="Enter your Mobile no" required />
             </div>
             <div class="input-box">
               <span class="details">Password</span>
-              <input type="text" placeholder="Enter your password" required />
+              <input type="text" placeholder="Enter your Password" required />
             </div>
             <div class="input-box">
               <span class="details">Confirm Password</span>
               <input type="text" placeholder="Confirm your password" required />
+            </div>
+            <div class="input-box">
+              <span class="details">File</span>
+              <input type="file" name="fileInput" id="fileInput">
             </div>
           </div>
           <div class="gender-details">
@@ -200,14 +232,11 @@
                 <span class="dot two"></span>
                 <span class="gender">Female</span>
               </label>
-              <label for="dot-3">
-                <span class="dot three"></span>
-                <span class="gender">Prefer not to say</span>
-              </label>
             </div>
           </div>
           <div class="button">
-            <input type="submit" value="Register" />
+            <input type="submit" value="Seller registration" />
+            <input type="submit" value="Buyer registration" style="width:40%;margin-left: 10%;" />
           </div>
         </form>
       </div>
