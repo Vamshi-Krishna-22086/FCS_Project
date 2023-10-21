@@ -16,10 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from home_app import views
+from seller_app import views
 
 urlpatterns = [
-    path('',views.landing_page,name='landing_page'),
-    path('register/',views.registration_page,name='registration_page'),
-    path('seller/', include('seller_app.urls'))
+    path('' , views.seller_login , name='seller-login')
 ]
