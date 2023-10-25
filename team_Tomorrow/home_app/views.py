@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
 from home_app.models import Seller
+from django.contrib.auth.hashers import make_password,check_password
 
 def landing_page(request):
     return render(request,'home/landing_page.html')
@@ -20,7 +21,9 @@ def seller_registrations(request):
         file=request.POST['file']
         gender=request.POST['gender']
 
-        ins=Seller(email=email,name=name,city=city,state=state,country=country,secret=secret,mobile=mobile,file=file,gender=gender)
+        hash_secret=make_password(secret)
+
+        ins=Seller(email=email,name=name,city=city,state=state,country=country,secret=hash_secret,mobile=mobile,file=file,gender=gender)
         ins.save()
     else:
         print("unsuceesful")
