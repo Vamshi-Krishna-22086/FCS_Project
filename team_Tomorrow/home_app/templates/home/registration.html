@@ -162,7 +162,7 @@
     <div class="container">
       <div class="title">User Registration</div>
       <div class="content">
-        <form action="/register/seller-registration/" method="post">
+        <form action="/register/seller-buyer-registration/" method="post">
           {%csrf_token%}
           <div class="user-details">
             <div class="input-box">
@@ -240,9 +240,17 @@
                 <option value="other">Other</option>
             </select>
           </div>
+          <div class="gender-details">
+            <br>
+            <label for="gender">User type:</label>
+            <select id="user_type" name="user_type">
+              <option value="buyer">Buyer</option>
+              <option value="seller">Seller</option>
+            </select>
+          </div>
           <div class="button">
             {% comment %} <input onclick="location.href='{% url 'seller-registration'%}'" type="submit" value="Seller registration" /> {% endcomment %}
-            <input type="submit" value="Buyer registration" style="width:40%;margin-left: 10%;" />
+            <input type="submit" value="Submit" style="width:40%;margin-left: 10%;" />
           </div>
         </form>
       </div>

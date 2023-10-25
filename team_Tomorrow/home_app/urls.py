@@ -22,5 +22,5 @@ urlpatterns = [
     path('',views.landing_page,name='landing_page'),
     path('register/',views.registration_page,name='registration_page'),
     path('seller/', include('seller_app.urls')),
-    path('register/seller-registration/', views.seller_registrations, name='seller-registration')
+    path('register/seller-buyer-registration/', views.seller_buyer_registrations, name='seller-buyer-registration')
 ]
