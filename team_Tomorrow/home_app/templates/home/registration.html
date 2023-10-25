@@ -160,6 +160,7 @@
   </head>
   <body>
     <div class="container">
+      {% include "home/message.html" %}
       <div class="title">User Registration</div>
       <div class="content">
         <form action="/register/seller-buyer-registration/" method="post">
@@ -249,11 +250,20 @@
             </select>
           </div>
           <div class="button">
-            {% comment %} <input onclick="location.href='{% url 'seller-registration'%}'" type="submit" value="Seller registration" /> {% endcomment %}
             <input type="submit" value="Submit" style="width:40%;margin-left: 10%;" />
           </div>
         </form>
       </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      $(document).ready(function() {
+          setTimeout(function(){
+              if ($('#mssg').length > 0) {
+                  $('#mssg').remove();
+              }
+          }, 4000);  // Use 2000 for a 2-second delay
+      });
+  </script>
   </body>
 </html>

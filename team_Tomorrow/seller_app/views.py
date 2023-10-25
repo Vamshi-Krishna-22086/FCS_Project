@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from home_app.models import Seller
 from django.contrib.auth.hashers import make_password,check_password
+from django.contrib import messages
+
 
 def seller_login(request):
     return render(request,'seller_home/seller_login.html')
