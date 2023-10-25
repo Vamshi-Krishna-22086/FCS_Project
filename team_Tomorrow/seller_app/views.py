@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from seller_app.models import Seller
+from home_app.models import Seller
 
 def seller_login(request):
     return render(request,'seller_home/seller_login.html')
