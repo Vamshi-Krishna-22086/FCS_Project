@@ -10,12 +10,14 @@ def seller_login(request):
 
 def seller_home(request):
     if(request.method=="POST"):
-        print("Successful")
+        
         email=request.POST['username']
         seller_email = email
         password=request.POST['password']
+        
         userData=Seller.objects.all()
         for it in userData:
+            print(check_password(password,it.secret))
             if(it.email==email and check_password(password,it.secret)):
                 # context = create_listings(email)
                 return render(request, 'seller_home/seller_home.html')
