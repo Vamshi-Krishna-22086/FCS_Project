@@ -1,11 +1,33 @@
 from django.shortcuts import render
-from home_app.models import Seller
+from home_app.models import Seller, Listings
 from django.contrib.auth.hashers import make_password,check_password
 from django.contrib import messages
 
 
 def seller_login(request):
     return render(request,'seller_home/seller_login.html')
+
+
+def create_listings(email):
+    myListings = Listings.objects.all()
+    listings = []
+    for post in myListings:
+        if(post.email == email):
+            my_post = {}
+            my_post['id'] = post.id
+            my_post['title'] = post.title
+            my_post['location'] = post.location
+            my_post['price'] = post.price
+            my_post['description'] = post.description
+            my_post['posted_by'] = post.posted_by
+            my_post['seller_contact'] = post.contact
+            listings.append(my_post)
+
+    context = {
+        'title' : 'listings',
+        'listings' : listings
+    }
+    return context.copy()
 
 
 def seller_home(request):
@@ -19,8 +41,8 @@ def seller_home(request):
         for it in userData:
             print(check_password(password,it.secret))
             if(it.email==email and check_password(password,it.secret)):
-                # context = create_listings(email)
-                return render(request, 'seller_home/seller_home.html')
+                context = create_listings(email)
+                return render(request, 'seller_home/seller_home.html', context)
         # print(userData)
     return render(request, 'seller_home/seller_login.html')
 

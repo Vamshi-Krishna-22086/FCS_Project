@@ -28,4 +28,19 @@ class Buyer(models.Model):
     class Meta:
         db_table="buyer_details"
 
+
+# model for listings
+class Listings(models.Model):
+    id = models.IntegerField
+    title = models.CharField(max_length=100)
+    location = models.CharField(max_length=100)
+    price = models.CharField(max_length=100)
+    posted_by = models.CharField(max_length=100)
+    contact = models.CharField(max_length=100)
+    description = models.CharField(max_length=500)
+    email = models.CharField(max_length=100)
+    
+    class Meta:
+        db_table="seller_listings"
+
 # Create your models here.
