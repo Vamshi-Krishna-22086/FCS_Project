@@ -39,6 +39,7 @@ class Listings(models.Model):
     contact = models.CharField(max_length=100)
     description = models.CharField(max_length=500)
     email = models.CharField(max_length=100)
+    img = models.CharField(max_length=100)
     
     class Meta:
         db_table="seller_listings"

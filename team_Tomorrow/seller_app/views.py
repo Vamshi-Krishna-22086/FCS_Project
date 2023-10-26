@@ -7,6 +7,8 @@ from django.contrib import messages
 def seller_login(request):
     return render(request,'seller_home/seller_login.html')
 
+def add_listing(request):
+    return render(request, 'seller_home/add_listing.html')
 
 def create_listings(email):
     myListings = Listings.objects.all()
@@ -21,6 +23,7 @@ def create_listings(email):
             my_post['description'] = post.description
             my_post['posted_by'] = post.posted_by
             my_post['seller_contact'] = post.contact
+            my_post['img'] = post.img
             listings.append(my_post)
 
     context = {

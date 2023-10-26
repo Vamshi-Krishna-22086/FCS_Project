@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% load static %}
+
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -63,8 +63,7 @@
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#">About</a></li>
+              <li class="active"><a href="{% url 'add_listing' %}">Add Listing</a></li>
               <li><a href="#"> View Profile</a></li>
               <li><a href="#">Logout</a></li>
             </ul>
@@ -73,75 +72,26 @@
       </nav>
     <div class="container">
       <div class="row bootstrap snippets bootdeys" id="real-estates-columns">
-        {% comment %} <div class="col-md-4 col-sm-6 col-xs-12">
-          <div class="panel">
-            <div class="panel-body">
-              <a href="#"
-                ><img
-                  src="https://www.bootdey.com/image/300x300/20B2AA/000000"
-                  class="img-responsive"
-              /></a>
-              <div class="title-realestates-columns">
-                <h4>
-                  <a href="#"><strong></strong></a>
-                </h4>
-                <small class="label label-warning"
-                  ><i class="fa fa-dot-circle-o" data-original-title title></i>
-                  $2,989</small
-                >
-                <hr />
-                <p>
-                  Nah nek iki lagi larang soale apik-apik barange tur aku ra iso
-                  tuku wong karang jeh ngumpulke gawe nikah kie.
-                </p>
-              </div>
-              <div class="footer-realestates-columns">
-                <div class="row">
-                  <div class="col-sm-6">
-                    <a
-                      href="#"
-                      class="btn btn-primary btn-block"
-                      data-original-title
-                      title
-                      >View Property</a
-                    >
-                  </div>
-                  <div class="col-sm-6">
-                    <a
-                      href="#"
-                      class="btn btn-danger btn-block"
-                      data-original-title
-                      title
-                      >Delete Listing</a
-                    >
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> {% endcomment %}
-        
         {% for post in listings %}
         <div class="col-md-4 col-sm-6 col-xs-12">
           <div class="panel">
             <div class="panel-body">
               <a href="#"
                 ><img
-                  src="https://www.bootdey.com/image/300x300/FF7F50/000000"
+                  src="../../static/images/{{post.img}}" alt="My Image"
                   class="img-responsive"
               /></a>
               <div class="title-realestates-columns">
                 <h4>
-                  <a href="#"><strong>Omah Gedong Apik BGT</strong></a>
+                  <a href="#"><strong>{{ post.title}}</strong></a>
                 </h4>
                 <small class="label label-warning"
                   ><i class="fa fa-dot-circle-o" data-original-title title></i>
-                  $2,989</small
+                  {{post.price}}</small
                 >
                 <hr />
                 <p>
-                  Nah nek iki lagi larang soale apik-apik barange tur aku ra iso
-                  tuku wong karang jeh ngumpulke gawe nikah kie.
+                  {{post.description}}
                 </p>
               </div>
               <div class="footer-realestates-columns">
@@ -170,195 +120,6 @@
           </div>
         </div>
         {% endfor %}
-        
-        {% comment %} <div class="col-md-4 col-sm-6 col-xs-12">
-          <div class="panel">
-            <div class="panel-body">
-              <a href="#"
-                ><img
-                  src="https://www.bootdey.com/image/300x300/87CEFA/000000"
-                  class="img-responsive"
-              /></a>
-              <div class="title-realestates-columns">
-                <h4>
-                  <a href="#"><strong>Omah Gedong Apik BGT</strong></a>
-                </h4>
-                <small class="label label-warning"
-                  ><i class="fa fa-dot-circle-o" data-original-title title></i>
-                  $2,989</small
-                >
-                <hr />
-                <p>
-                  Nah nek iki lagi larang soale apik-apik barange tur aku ra iso
-                  tuku wong karang jeh ngumpulke gawe nikah kie.
-                </p>
-              </div>
-              <div class="footer-realestates-columns">
-                <div class="row">
-                  <div class="col-sm-6">
-                    <a
-                      href="#"
-                      class="btn btn-primary btn-block"
-                      data-original-title
-                      title
-                      >View Property</a
-                    >
-                  </div>
-                  <div class="col-sm-6">
-                    <a
-                      href="#"
-                      class="btn btn-danger btn-block"
-                      data-original-title
-                      title
-                      >Delete Listing</a
-                    >
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 col-sm-6 col-xs-12">
-          <div class="panel">
-            <div class="panel-body">
-              <a href="#"
-                ><img
-                  src="https://www.bootdey.com/image/300x300/FFB6C1/000000"
-                  class="img-responsive"
-              /></a>
-              <div class="title-realestates-columns">
-                <h4>
-                  <a href="#"><strong>Omah Gedong Apik BGT</strong></a>
-                </h4>
-                <small class="label label-warning"
-                  ><i class="fa fa-dot-circle-o" data-original-title title></i>
-                  $2,989</small
-                >
-                <hr />
-                <p>
-                  Nah nek iki lagi larang soale apik-apik barange tur aku ra iso
-                  tuku wong karang jeh ngumpulke gawe nikah kie.
-                </p>
-              </div>
-              <div class="footer-realestates-columns">
-                <div class="row">
-                  <div class="col-sm-6">
-                    <a
-                      href="#"
-                      class="btn btn-primary btn-block"
-                      data-original-title
-                      title
-                      >View Property</a
-                    >
-                  </div>
-                  <div class="col-sm-6">
-                    <a
-                      href="#"
-                      class="btn btn-danger btn-block"
-                      data-original-title
-                      title
-                      >Delete Listing</a
-                    >
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 col-sm-6 col-xs-12">
-          <div class="panel">
-            <div class="panel-body">
-              <a href="#"
-                ><img
-                  src="https://www.bootdey.com/image/300x300/FF7F50/000000"
-                  class="img-responsive"
-              /></a>
-              <div class="title-realestates-columns">
-                <h4>
-                  <a href="#"><strong>Omah Gedong Apik BGT</strong></a>
-                </h4>
-                <small class="label label-warning"
-                  ><i class="fa fa-dot-circle-o" data-original-title title></i>
-                  $2,989</small
-                >
-                <hr />
-                <p>
-                  Nah nek iki lagi larang soale apik-apik barange tur aku ra iso
-                  tuku wong karang jeh ngumpulke gawe nikah kie.
-                </p>
-              </div>
-              <div class="footer-realestates-columns">
-                <div class="row">
-                  <div class="col-sm-6">
-                    <a
-                      href="#"
-                      class="btn btn-primary btn-block"
-                      data-original-title
-                      title
-                      >View Property</a
-                    >
-                  </div>
-                  <div class="col-sm-6">
-                    <a
-                      href="#"
-                      class="btn btn-danger btn-block"
-                      data-original-title
-                      title
-                      >Delete Listing</a
-                    >
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 col-sm-6 col-xs-12">
-          <div class="panel">
-            <div class="panel-body">
-              <a href="#"
-                ><img
-                  src="https://www.bootdey.com/image/300x300/20B2AA/000000"
-                  class="img-responsive"
-              /></a>
-              <div class="title-realestates-columns">
-                <h4>
-                  <a href="#"><strong>Omah Gedong Apik BGT</strong></a>
-                </h4>
-                <small class="label label-warning"
-                  ><i class="fa fa-dot-circle-o" data-original-title title></i>
-                  $2,989</small
-                >
-                <hr />
-                <p>
-                  Nah nek iki lagi larang soale apik-apik barange tur aku ra iso
-                  tuku wong karang jeh ngumpulke gawe nikah kie.
-                </p>
-              </div>
-              <div class="footer-realestates-columns">
-                <div class="row">
-                  <div class="col-sm-6">
-                    <a
-                      href="#"
-                      class="btn btn-primary btn-block"
-                      data-original-title
-                      title
-                      >View Property</a
-                    >
-                  </div>
-                  <div class="col-sm-6">
-                    <a
-                      href="#"
-                      class="btn btn-danger btn-block"
-                      data-original-title
-                      title
-                      >Delete Listing</a
-                    >
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> {% endcomment %}
       </div>
     </div>
   </body>
