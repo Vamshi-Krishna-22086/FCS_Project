@@ -42,6 +42,7 @@ def seller_home(request):
             print(check_password(password,it.secret))
             if(it.email==email and check_password(password,it.secret)):
                 context = create_listings(email)
+                print(context)
                 return render(request, 'seller_home/seller_home.html', context)
         # print(userData)
     return render(request, 'seller_home/seller_login.html')
