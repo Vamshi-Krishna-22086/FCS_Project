@@ -10,6 +10,9 @@ def seller_login(request):
 def add_listing(request):
     return render(request, 'seller_home/add_listing.html')
 
+def view_profile(request):
+    return render(request, 'seller_home/seller_profile.html')
+
 def create_listings(email):
     myListings = Listings.objects.all()
     listings = []
@@ -37,7 +40,6 @@ def seller_home(request):
     if(request.method=="POST"):
         
         email=request.POST['username']
-        seller_email = email
         password=request.POST['password']
         
         userData=Seller.objects.all()
