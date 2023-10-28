@@ -53,7 +53,7 @@ def seller_home(request):
 
 def add_listing_save(request):
     if(request.method=="POST"):
-        print("seller_successful")
+        print("seller__listing_save_successful")
         building_name=request.POST['building_name']
         location=request.POST['location']
         price=request.POST['price']
@@ -68,7 +68,7 @@ def add_listing_save(request):
         #     messages.warning(request, 'Password and confirm password did not match.')
         return render(request,'seller_home/add_listing.html')
     else:
-        print("unsuceesful")
+        print("seller__listing_save_unsuceesful")
 
     return render(request,'seller_home/add_listing.html')
 # Create your views here.
