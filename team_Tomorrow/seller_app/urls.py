@@ -21,5 +21,6 @@ from seller_app import views
 urlpatterns = [
     path('' , views.seller_login , name='seller-login'),
     path('seller-home/', views.seller_home, name='seller-home'),
-    path('add-listing/', views.add_listing, name='add-listing')
+    path('add-listing/', views.add_listing, name='add-listing'),
+    path('add-listing/add-listing-save/', views.add_listing_save, name='add-listing-save')
 ]

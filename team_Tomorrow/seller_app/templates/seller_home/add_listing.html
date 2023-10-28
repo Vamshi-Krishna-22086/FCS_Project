@@ -160,10 +160,10 @@
   </head>
   <body>
     <div class="container">
-      {% include "home/message.html" %}
+      {% comment %} {% include "home/message.html" %} {% endcomment %}
       <div class="title">Add Listing</div>
       <div class="content">
-        <form action="/register/seller-buyer-registration/" method="post">
+        <form action="seller/add-listing/add-listing-save/" method="post">
           {%csrf_token%}
           <div class="user-details">
             <div class="input-box">
@@ -183,10 +183,6 @@
               <input type="text" name="owner_name" placeholder="Enter owner name" required />
             </div>
             <div class="input-box">
-              <span class="details">Country</span>
-              <input type="text" name="country" placeholder="Enter your country" required />
-            </div>
-            <div class="input-box">
               <span class="details">Mobile no</span>
               <input type="text" name="mobile" placeholder="Enter your Mobile no" pattern="[1-9][0-9]{9}" required />
             </div>
@@ -204,7 +200,7 @@
             </div>
           </div>
           <div class="button">
-            <input type="submit" value="Submit" style="width:40%;margin-left: 10%;" />
+            <input type="submit" value="Submit" style="width:40%;margin-left: 0%;" />
           </div>
         </form>
       </div>

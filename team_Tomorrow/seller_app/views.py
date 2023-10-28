@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from home_app.models import Seller, Listings
 from django.contrib.auth.hashers import make_password,check_password
 from django.contrib import messages
@@ -50,4 +50,25 @@ def seller_home(request):
         # print(userData)
     return render(request, 'seller_home/seller_login.html')
 
+
+def add_listing_save(request):
+    if(request.method=="POST"):
+        print("seller_successful")
+        building_name=request.POST['building_name']
+        location=request.POST['location']
+        price=request.POST['price']
+        owner_name=request.POST['owner_name']
+        mobile=request.POST['mobile']
+        description=request.POST['description']
+        email=request.POST['email']
+        building_img=request.POST['building_img']
+        ins=Listings(title=building_name,location=location,price=price,posted_by=owner_name,contact=mobile,description=description,email=email,img=building_img)
+        ins.save()
+        # else:
+        #     messages.warning(request, 'Password and confirm password did not match.')
+        return render(request,'seller_home/add_listing.html')
+    else:
+        print("unsuceesful")
+
+    return render(request,'seller_home/add_listing.html')
 # Create your views here.
