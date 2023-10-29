@@ -8,7 +8,7 @@ from rest_framework import generics
 def buyer_login(request):
     return render(request,'buyer_home/buyer_login.html')
 
-def create_listings(email):
+def create_listings():
     myListings = Listings.objects.all()
     listings = []
     for post in myListings:
@@ -36,7 +36,7 @@ def buyer_home(request):
         email=request.POST['username']
         seller_email = email
         password=request.POST['password']
-        context = create_listings(email)
+        context = create_listings()
         userData=Seller.objects.all()
         for it in userData:
             print(check_password(password,it.secret))
@@ -51,10 +51,17 @@ def Querylist(request):
         location = request.POST['location']
         budget = request.POST['budget']
 
-        print("location === " , location)
-        print("budget === " , budget)
+        # print("location === " , location)
+        # print("budget === " , type(budget))
 
-        
+        if location == 'all':
+            context = create_listings(1) # 1 does not here anything
+            if (budget):
+                budget = float(budget)
+                context = Listings.objects.filter(price__lt=budget)
+                print(context)
+                context = {'title' : 'listings','listings' : context}
+            return render(request, 'buyer_home/buyer_home.html' , context)
 
         if location and budget:
             try:
@@ -65,10 +72,7 @@ def Querylist(request):
             
             except ValueError:
                 return render(request, 'error_template.html', {'error_message': 'Invalid budget value'})
-            
-        elif location == 'all':
-            context = create_listings(1) # 1 does not here anything
-            return render(request, 'buyer_home/buyer_home.html' , context)
+
         
         elif location:
                 listings = Listings.objects.filter(location=location)
