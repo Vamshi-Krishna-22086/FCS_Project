@@ -23,6 +23,8 @@ urlpatterns = [
     path('seller-home/', views.seller_home, name='seller-home'),
     path('add-listing/', views.add_listing, name='add-listing'),
     path('delete-listing/', views.delete_listing, name='delete-listing'),
+    path('edit-listing-page/', views.edit_listing_page, name='edit-listing-page'),
     path('view-profile/', views.view_profile, name='view-profile'),
-    path('add-listing/add-listing-save/', views.add_listing_save, name='add-listing-save')
+    path('add-listing/add-listing-save/', views.add_listing_save, name='add-listing-save'),
+    path('edit-listing-save/', views.edit_listing_save, name='edit-listing-save')
 ]

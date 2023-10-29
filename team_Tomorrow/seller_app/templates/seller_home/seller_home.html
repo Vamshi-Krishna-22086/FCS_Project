@@ -78,7 +78,9 @@
             </ul>
           </div>
         </div>
-      </nav>
+    </nav>
+
+
     <div class="container">
       <div class="row bootstrap snippets bootdeys" id="real-estates-columns">
         {% for post in listings %}
@@ -106,15 +108,17 @@
               </div>
               <div class="footer-realestates-columns">
                 <div class="row">
+                  <form method="post" action="{% url 'edit-listing-page' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="extra_field_id" value="{{post.id}}">
+                  <input type="hidden" name="extra_field_email" value="{{post.email}}">
                   <div class="col-sm-6">
-                    <a
-                      href="#"
-                      class="btn btn-primary btn-block"
-                      data-original-title
-                      title
-                      >View Property</a
-                    >
+                    <button class="btn btn-primary btn-block"
+                    data-original-title
+                    title type="submit">Edit</button>
                   </div>
+                </form>
+                  
                   <form method="post" action="{% url 'delete-listing' %}">
                     {% csrf_token %}
                     <input type="hidden" name="extra_field_1" value="{{post.id}}">
