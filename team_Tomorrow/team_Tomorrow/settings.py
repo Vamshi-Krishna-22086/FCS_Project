@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "admin_app.apps.AdminAppConfig",
     "home_app.apps.HomeAppConfig",
     "seller_app.apps.SellerAppConfig",
+    "buyer_app.apps.BuyerAppConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -93,7 +94,7 @@ DATABASES = {
         'PASSWORD': 'Group@2023',
         'PORT':3306,
         'HOST':'192.168.3.7',
-        
+
     }
 }
 

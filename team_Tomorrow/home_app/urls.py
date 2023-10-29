@@ -23,6 +23,11 @@ urlpatterns = [
     path('register/',views.registration_page,name='registration_page'),
     path('my_admin/', include('admin_app.urls')),
     path('seller/', include('seller_app.urls')),
+<<<<<<< Updated upstream
     path('lesser/', include('lesser_app.urls')),
     path('register/seller-buyer-registration/', views.seller_buyer_registrations, name='seller-buyer-registration')
+=======
+    path('register/seller-buyer-registration/', views.seller_buyer_registrations, name='seller-buyer-registration'),
+    path('buyer/',include('buyer_app.urls'))
+>>>>>>> Stashed changes
 ]
