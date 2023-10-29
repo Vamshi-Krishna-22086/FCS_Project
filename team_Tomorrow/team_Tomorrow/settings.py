@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     "admin_app.apps.AdminAppConfig",
     "home_app.apps.HomeAppConfig",
     "seller_app.apps.SellerAppConfig",
-    "buyer_app.apps.BuyerAppConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
