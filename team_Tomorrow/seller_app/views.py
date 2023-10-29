@@ -8,7 +8,13 @@ def seller_login(request):
     return render(request,'seller_home/seller_login.html')
 
 def add_listing(request):
-    return render(request, 'seller_home/add_listing.html')
+    email=request.POST['extra_field_3']
+    print("sdfbcjhg dskzhnhkjsbv cxklhcb kjsd")
+    print(email)
+    context = {
+        'seller_email': email
+    }
+    return render(request, 'seller_home/add_listing.html',context.copy())
 
 def view_profile(request):
     return render(request, 'seller_home/seller_profile.html')
@@ -28,7 +34,7 @@ def delete_listing(request):
 
 def create_listings(email):
     myListings = Listings.objects.all()
-    listings = []
+    listing = []
     for post in myListings:
         if(post.email == email):
             my_post = {}
@@ -41,11 +47,11 @@ def create_listings(email):
             my_post['seller_contact'] = post.contact
             my_post['img'] = post.img
             my_post['email'] = post.email
-            listings.append(my_post)
+            listing.append(my_post)
 
     context = {
         'title' : 'listings',
-        'listings' : listings
+        'listings' : listing
     }
     return context.copy()
 
@@ -61,6 +67,7 @@ def seller_home(request):
             print(check_password(password,it.secret))
             if(it.email==email and check_password(password,it.secret)):
                 context = create_listings(email)
+                context['seller_email']=email
                 print(context)
                 return render(request, 'seller_home/seller_home.html', context)
         # print(userData)

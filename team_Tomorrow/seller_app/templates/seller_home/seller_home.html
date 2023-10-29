@@ -63,7 +63,16 @@
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-              <li class="active"><a href="{% url 'add-listing' %}">Add Listing</a></li>
+              <li class="active">
+                {% comment %} <a href="{% url 'add-listing' %}">Add Listing</a> {% endcomment %}
+                <form method="post" action="{% url 'add-listing' %}">
+                  {% csrf_token %}
+                  <input type="hidden" name="extra_field_3" value={{seller_email}}>
+                  {% comment %} <a href="#">Add Listing</a> {% endcomment %}
+                  <button type="submit">Add Listing</button>
+                </form>
+              </li>
+              
               <li><a href="{% url 'view-profile' %}"> View Profile</a></li>
               <li><a href="#">Logout</a></li>
             </ul>
