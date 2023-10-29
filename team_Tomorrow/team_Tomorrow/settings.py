@@ -36,6 +36,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "lesser_app.apps.LesserAppConfig",
     "buyer_app.apps.BuyerAppConfig",
     "admin_app.apps.AdminAppConfig",
     "home_app.apps.HomeAppConfig",

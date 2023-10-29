@@ -16,13 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from seller_app import views
+from lesser_app import views
 
 urlpatterns = [
-    path('' , views.seller_login , name='seller-login'),
-    path('seller-home/', views.seller_home, name='seller-home'),
-    path('add-listing/', views.add_listing, name='add-listing'),
-    path('delete-listing/', views.delete_listing, name='delete-listing'),
-    path('view-profile/', views.view_profile, name='view-profile'),
-    path('add-listing/add-listing-save/', views.add_listing_save, name='add-listing-save')
+    path('' , views.lesser_login , name='lesser-login'),
 ]
