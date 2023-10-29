@@ -163,7 +163,7 @@
       {% comment %} {% include "home/message.html" %} {% endcomment %}
       <div class="title">Add Listing</div>
       <div class="content">
-        <form action="seller/add-listing/add-listing-save/" method="post">
+        <form action="add-listing-save/" method="post">
           {%csrf_token%}
           <div class="user-details">
             <div class="input-box">

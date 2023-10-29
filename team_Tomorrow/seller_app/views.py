@@ -13,6 +13,19 @@ def add_listing(request):
 def view_profile(request):
     return render(request, 'seller_home/seller_profile.html')
 
+def delete_listing(request):
+    print("gjhgjh")
+    id1=request.POST['extra_field_1']
+    seller_email=request.POST['extra_field_2']
+    id1=int(id1)
+    dele=Listings.objects.get(id=id1)
+    dele.delete()
+    context = create_listings(seller_email)
+    print("------>")
+    print(seller_email)
+    return render(request, 'seller_home/seller_home.html', context)
+
+
 def create_listings(email):
     myListings = Listings.objects.all()
     listings = []
@@ -27,6 +40,7 @@ def create_listings(email):
             my_post['posted_by'] = post.posted_by
             my_post['seller_contact'] = post.contact
             my_post['img'] = post.img
+            my_post['email'] = post.email
             listings.append(my_post)
 
     context = {

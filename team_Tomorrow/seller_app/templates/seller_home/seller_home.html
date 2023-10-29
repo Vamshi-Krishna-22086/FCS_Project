@@ -85,6 +85,7 @@
                 <h4>
                   <a href="#"><strong>{{ post.title}}</strong></a>
                 </h4>
+                
                 <small class="label label-warning"
                   ><i class="fa fa-dot-circle-o" data-original-title title></i>
                   {{post.price}}</small
@@ -105,15 +106,24 @@
                       >View Property</a
                     >
                   </div>
+                  <form method="post" action="{% url 'delete-listing' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="extra_field_1" value="{{post.id}}">
+                  <input type="hidden" name="extra_field_2" value="{{post.email}}">
                   <div class="col-sm-6">
-                    <a
-                      href="#"
+                    {% comment %} <a
+                      href="{% url 'delete-listing' %}"
                       class="btn btn-danger btn-block"
                       data-original-title
                       title
                       >Delete Listing</a
-                    >
+                    > {% endcomment %}
+                    <button class="btn btn-danger btn-block"
+                    data-original-title
+                    title type="submit">Delete</button>
                   </div>
+                </form>
+                  
                 </div>
               </div>
             </div>
