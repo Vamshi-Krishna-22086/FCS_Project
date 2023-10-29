@@ -2,7 +2,7 @@ from django.shortcuts import render
 from home_app.models import Seller, Listings
 from django.contrib.auth.hashers import make_password,check_password
 from rest_framework import generics
-from .serializers import PropertySerializer
+
 # Create your views here.
 
 def buyer_login(request):
@@ -30,24 +30,6 @@ def create_listings(email):
     return context.copy()
 
 def buyer_home(request):
-    myListings = Listings.objects.all()
-    listings = []
-    for post in myListings:
-        my_post = {}
-        my_post['id'] = post.id
-        my_post['title'] = post.title
-        my_post['location'] = post.location
-        my_post['price'] = post.price
-        my_post['description'] = post.description
-        my_post['posted_by'] = post.posted_by
-        my_post['seller_contact'] = post.contact
-        my_post['img'] = post.img
-        listings.append(my_post)
-
-    context = {
-        'title' : 'listings',
-        'listings' : listings
-    }
 
     if(request.method=="POST"):
         
@@ -71,17 +53,23 @@ def Querylist(request):
 
         print("location === " , location)
         print("budget === " , budget)
+
+        
+
         if location and budget:
             try:
                 budget = float(budget)
-                listings = Listings.objects.filter(location=location, budget=budget)
+                listings = Listings.objects.filter(location=location, price__lt=budget)
                 return render(request, 'buyer_home/buyer_home.html', {'title' : 'listings',
         'listings' : listings})
             
             except ValueError:
                 return render(request, 'error_template.html', {'error_message': 'Invalid budget value'})
             
-
+        elif location == 'all':
+            context = create_listings(1) # 1 does not here anything
+            return render(request, 'buyer_home/buyer_home.html' , context)
+        
         elif location:
                 listings = Listings.objects.filter(location=location)
                 return render(request, 'buyer_home/buyer_home.html', {'title' : 'listings',
@@ -90,7 +78,7 @@ def Querylist(request):
         elif  budget:
             try:
                 budget = float(budget)
-                listings = Listings.objects.filter(budget=budget)
+                listings = Listings.objects.filter(price__lt=budget)
                 return render(request, 'buyer_home/buyer_home.html', {'title' : 'listings',
         'listings' : listings})
             
