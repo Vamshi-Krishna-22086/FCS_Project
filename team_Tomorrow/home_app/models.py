@@ -44,4 +44,8 @@ class Listings(models.Model):
     class Meta:
         db_table="seller_listings"
 
+
+
+
+
 # Create your models here.

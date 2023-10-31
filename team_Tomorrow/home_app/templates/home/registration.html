@@ -159,11 +159,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
   <body>
+    <script>
+      function toggleButtons() {
+          var btn1 = document.getElementById('button1');
+          var btn2 = document.getElementById('button2');
+
+          btn1.style.display = 'none';
+          btn2.style.display = 'block';
+      }
+    </script>
     <div class="container">
       {% include "home/message.html" %}
       <div class="title">User Registration</div>
       <div class="content">
-        <form action="/register/seller-buyer-registration/" method="post">
+        <form action="{% url 'seller-buyer-registration' %}" method="post">
           {%csrf_token%}
           <div class="user-details">
             <div class="input-box">
@@ -204,7 +213,7 @@
             </div> {% endcomment %}
             <div class="input-box">
               <span class="details">Mobile no</span>
-              <input type="text" name="mobile" placeholder="Enter your Mobile no" pattern="[1-9][0-9]{9}" required />
+              <input type="text" readonly name="mobile" value="{{mobile}}" />
             </div>
             <div class="input-box">
               <span class="details">Password</span>
@@ -213,6 +222,10 @@
             <div class="input-box">
               <span class="details">Confirm Password</span>
               <input type="text" name="confirm_secret" placeholder="Confirm your password" required />
+            </div>
+            <div class="input-box">
+              <span class="details">Enter OTP send to mobile no</span>
+              <input type="text" name="user_otp" placeholder="Enter your otp" required />
             </div>
             <div class="input-box">
               <span class="details">File</span>
@@ -250,7 +263,8 @@
             </select>
           </div>
           <div class="button">
-            <input type="submit" value="Submit" style="width:40%;margin-left: 0%;" />
+            <input name="otp" value="{{otp}}" style="display:none" />
+            <input type="submit" value="Submit" id="button2" style="width:40%;margin-left: 0%;" />
           </div>
         </form>
       </div>
