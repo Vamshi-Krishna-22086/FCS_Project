@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>Property detail</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style type="text/css">
+      .estate .primary-image {
+        border: 1px solid #e0eded;
+        padding: 5px;
+      }
+
+      .estate .thumbnail-images {
+        display: table;
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 25px;
+      }
+
+      .estate .thumbnail-images a {
+        display: table-cell;
+        width: 100px;
+        padding: 5px;
+        border: 1px solid #e0eded;
+        border-top: 0;
+      }
+
+      .estate .thumbnail-images a img {
+        width: 100%;
+      }
+
+      .estate .product-info h3 {
+        font-weight: 500;
+        font-size: 18px;
+      }
+
+      .product-info h3 {
+        margin-bottom: 10px;
+      }
+
+      .wp-block.property.list {
+        border: 1px solid #e0eded;
+      }
+
+      .wp-block {
+        margin: 0 0 15px 0;
+        -webkit-transition: all 0.3s linear;
+        transition: all 0.3s linear;
+        position: relative;
+        cursor: default;
+        border-radius: 2px;
+      }
+
+      .no-border {
+        border: 0 !important;
+      }
+
+      .wp-block.property.list .wp-block-content .content-title {
+        font-size: 20px;
+        color: #3498db;
+        margin-bottom: 5px;
+      }
+
+      .wp-block.property.list .wp-block-content .description {
+        padding-bottom: 10px;
+        border-bottom: 1px solid #e0eded;
+      }
+
+      .mb-15 {
+        margin-bottom: 15px;
+      }
+
+      .wp-block.property.list .wp-block-content .price {
+        font-size: 22px;
+        color: #9cd70e;
+        font-weight: 600;
+      }
+
+      .wp-block.property.list .wp-block-content .period {
+        margin-left: 5px;
+        color: #999;
+      }
+
+      .wp-block.property.list .wp-block-content .capacity {
+        font-size: 16px;
+        color: #999;
+      }
+
+      .mt-15 {
+        margin-top: 15px;
+      }
+
+      .wp-block.property.list .wp-block-footer.style2 ul.aux-info {
+        display: table;
+        width: 100%;
+        border: 1px solid #e0eded;
+      }
+
+      .wp-block.property.list .wp-block-footer ul.aux-info {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        display: block;
+        background: #fcfcfc;
+        border-top: 1px solid #e0eded;
+      }
+
+      .wp-block.property.list .wp-block-footer.style2 ul.aux-info li {
+        padding: 10px 10px;
+        font-size: 11px;
+        text-align: center;
+      }
+
+      .wp-block.property.list .wp-block-footer ul.aux-info li {
+        display: table-cell;
+        padding: 10px 15px;
+        vertical-align: middle;
+        border-right: 1px solid #e0eded;
+      }
+
+      .wp-block.property.list .wp-block-footer.style2 ul.aux-info li i {
+        display: block;
+      }
+
+      .wp-block.property.list .wp-block-footer ul.aux-info li i {
+        font-size: 18px;
+        margin-right: 8px;
+        color: #333;
+      }
+
+      .rating span.star {
+        font-family: FontAwesome;
+        font-weight: normal;
+        font-style: normal;
+        float: left;
+        padding: 0 1px;
+        cursor: pointer;
+      }
+
+      p {
+        line-height: 22px;
+        margin-bottom: 10px;
+      }
+
+      ol,
+      ul {
+        list-style: none;
+      }
+
+      .tabs-framed {
+        border: 1px solid #e0eded;
+      }
+
+      .tabs li a {
+        display: block;
+        font-size: 16px;
+        font-weight: 600;
+        color: #333;
+        padding: 12px 25px;
+        margin: 0 -1px;
+        border-bottom: 3px solid transparent;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+
+      .boxed {
+        background: #fff;
+        border: 1px solid #e0eded;
+        position: relative;
+      }
+
+      .tabs {
+        border-bottom: 1px solid #e0eded;
+      }
+
+      .tabs li {
+        float: left;
+        border-right: 1px solid #e0eded;
+        margin-bottom: -1px;
+      }
+
+      .tab-body {
+        padding: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <link
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
+    <!-- Navbar -->
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <button
+            type="button"
+            class="navbar-toggle collapsed"
+            data-toggle="collapse"
+            data-target="#navbar"
+            aria-expanded="false"
+          >
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Team Tomorrow Property</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/Seller_listing.html">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="/Seller_profile.html"> View Profile</a></li>
+            <li><a href="#">Logout</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="estate">
+      <div class="container bootstrap snippets bootdey">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-md-7">
+                <div class="product-gallery">
+                  <div class="primary-image">
+                    <a href="#" class="theater" rel="group" hidefocus="true">
+                      <img
+                        src="https://www.bootdey.com/image/700x300/FF69B4/000000"
+                        class="img-responsive"
+                        alt
+                      />
+                    </a>
+                  </div>
+                  
+                </div>
+              </div>
+              <div class="col-md-5">
+                <div class="product-info">
+                  <h3>3015 Grand Avenue, CocoWalk</h3>
+                  <div class="wp-block property list no-border">
+                    <div class="wp-block-content clearfix">
+                      <span class="pull-left">
+                        <span class="price">$230</span>
+                        <span class="period">per month</span>
+                      </span>
+                    </div>
+                    <span class="clearfix"></span>
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua.
+                    </p>
+                    <div class="section-title-wr">
+                      <h3 class="section-title left">Location details</h3>
+                    </div>
+                    <table
+                      class="table table-bordered table-striped table-hover table-responsive"
+                    >
+                      <tbody>
+                        <tr>
+                          <td><strong>Rooms:</strong> 5</td>
+                          <td><strong>Bedrooms:</strong> 4</td>
+                          <td><strong>Bathrooms:</strong> 2</td>
+                        </tr>
+                        <tr>
+                          <td><strong>Price:</strong> $23000</td>
+                          <td><strong>Year built:</strong> 1991</td>
+                          <td>
+                            <strong>Available from:</strong> 1 August 2014
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <button type="button" class="btn btn-primary btn-lg btn-block">
+                      Purchase Now
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="tabs-framed boxed">
+                    <div class="tab-content">
+                      <div class="tab-pane fade in active" id="tab-1">
+                        <div class="tab-body">
+                          <div class="section-title-wr">
+                            <h3 class="section-title left">
+                              Property description
+                            </h3>
+                          </div>
+                          <p>
+                            Lorem ipsum dolor sit amet, consectetuer adipiscing
+                            elit, sed diam nonummy nibh euismod tincidunt ut
+                            laoreet dolore magna aliquam erat volutpat. Ut wisi
+                            enim ad minim veniam, quis nostrud exerci tation
+                            ullamcorper suscipit lobortis nisl ut aliquip ex ea
+                            commodo consequat. Duis autem vel eum iriure dolor
+                            in hendrerit in vulputate velit esse molestie
+                            consequat, vel illum dolore eu feugiat nulla
+                            facilisis at vero eros et accumsan et iusto odio
+                            dignissim qui blandit praesent luptatum zzril
+                            delenit augue duis dolore te feugait nulla facilisi.
+                            <br /><br />
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Footer -->
+    <footer class="text-center">
+      &copy; 2023 Team Tomorrow FCS. All rights reserved.
+    </footer>
+  </body>
+</html>
