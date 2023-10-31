@@ -21,5 +21,6 @@ from admin_app import views
 urlpatterns = [
     path('' , views.admin_login , name='admin-login'),
     path('admin-home/', views.admin_home, name='admin-home'),
-    path('admin-home/admin-sellers/', views.admin_seller, name='admin-seller')
+    path('admin-home/admin-sellers/', views.admin_seller, name='admin-seller'),
+    path('admin-delete-seller/', views.admin_delete_seller, name='admin-delete-seller')
 ]

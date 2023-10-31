@@ -68,7 +68,13 @@
       <td>{{user.country}}</td>
       <td>{{user.file}}</td>
       <td>
-        <button onclick="alert('User Delete')">Delete</button>
+          <form method="post" action="{% url 'admin-delete-seller' %}">
+              {% csrf_token %} {# Include the CSRF token for security #}
+              <input type="hidden" name="d_id" value="{{user.id}}">
+              <input type="hidden" name="d_email" value="{{user.email}}">
+              <button type="submit">Delete</button>
+          </form>
+{#        <button onclick="alert('User Delete')">Delete</button>#}
       </td>
   </tr>
 {% endfor %}
