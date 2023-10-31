@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from home_app.models import Seller, Listings
 from django.contrib.auth.hashers import make_password,check_password
-from rest_framework import generics
 
 # Create your views here.
 
