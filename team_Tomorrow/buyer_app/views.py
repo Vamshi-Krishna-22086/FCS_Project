@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from home_app.models import Seller, Listings
 from django.contrib.auth.hashers import make_password,check_password
-
+from django.db.models import  FloatField
+from django.db.models.functions import Cast
 # Create your views here.
 
 def buyer_login(request):
@@ -29,7 +30,7 @@ def create_listings():
     return context.copy()
 
 def buyer_home(request):
-
+    context = create_listings()
     if(request.method=="POST"):
         
         email=request.POST['username']
@@ -43,6 +44,7 @@ def buyer_home(request):
                 return render(request, 'buyer_home/buyer_home.html', context)
 
         return render(request, 'buyer_home/buyer_home.html' , context)
+    return render(request, 'buyer_home/buyer_home.html' , context)
 
 
 def Querylist(request):
@@ -50,28 +52,29 @@ def Querylist(request):
         location = request.POST['location']
         budget = request.POST['budget']
 
-        # print("location === " , location)
-        # print("budget === " , type(budget))
+        print("location === " , location)
+        print("budget === " , budget)
 
         if location == 'all':
-            context = create_listings() # 1 does not here anything
+            context = create_listings()
             if (budget):
-                budget = float(budget)
-                context = Listings.objects.filter(price__lt=budget)
+                budget = int(budget)
+                context = Listings.objects.annotate(
+                    price_as_float=Cast('price', FloatField())
+                    ).filter(price_as_float__lt=budget)
                 print(context)
                 context = {'title' : 'listings','listings' : context}
             return render(request, 'buyer_home/buyer_home.html' , context)
 
         if location and budget:
-            try:
                 budget = float(budget)
-                listings = Listings.objects.filter(location=location, price__lt=budget)
+                listings = Listings.objects.annotate(
+                    price_as_float=Cast('price', FloatField())
+                    ).filter(location=location, price_as_float__lt=budget)
                 return render(request, 'buyer_home/buyer_home.html', {'title' : 'listings',
         'listings' : listings})
             
-            except ValueError:
-                return render(request, 'error_template.html', {'error_message': 'Invalid budget value'})
-
+            
         
         elif location:
                 listings = Listings.objects.filter(location=location)
@@ -79,18 +82,14 @@ def Querylist(request):
         'listings' : listings})
         
         elif  budget:
-            try:
                 budget = float(budget)
-                listings = Listings.objects.filter(price__lt=budget)
+                listings = Listings.objects.annotate(
+                    price_as_float=Cast('price', FloatField())
+                    ).filter(price_as_float__lt=budget)
+                print(context)
                 return render(request, 'buyer_home/buyer_home.html', {'title' : 'listings',
         'listings' : listings})
             
-            except ValueError:
-                return render(request, 'error_template.html', {'error_message': 'Invalid budget value'})
-           
-        
-
-        
 
 
 
