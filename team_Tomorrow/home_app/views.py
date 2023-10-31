@@ -19,18 +19,20 @@ def generate_random_otp():
 def registration_page(request):
     my_post = {}
     my_post['mobile'] = request.POST['mobile']
-    email=request.POST['mobile']
+    phone_number=request.POST['mobile']
 
     otp = generate_random_otp()
-    # Make an API request to the temporary email service to send the OTP to the provided email address
-    response = requests.post('lerepo6165@hondabbs.com', json={'email': email, 'otp': otp})
-    # Handle the response
-    # if response.status_code == 200:
-    #     return otp
-    # else:
-    #     return None
 
+    client = Client(settings.TWILIO_ACCOUNT_SID, settings.TWILIO_AUTH_TOKEN)
+    message = client.messages.create(
+        body=f'Your OTP is: {otp}',
+        from_=settings.TWILIO_PHONE_NUMBER,
+        to=phone_number
+    )
     #otp generate end
+
+    my_post['generate_otp'] = otp
+
 
     return render(request,'home/registration.html',my_post.copy())
 
@@ -38,6 +40,11 @@ def otp_sent(request):
     return render(request,'home/otp.html')
 
 def seller_buyer_registrations(request):
+    user_otp=int(request.POST['user_otp'])
+    generate_otp=int(request.POST['generate_otp'])
+    if(user_otp!=generate_otp):
+        messages.warning(request, 'OTP did not match.')
+        return render(request,'home/otp.html')
     if(request.method=="POST" and request.POST['user_type']=='seller'):
         print("seller_successful")
         email=request.POST['email']

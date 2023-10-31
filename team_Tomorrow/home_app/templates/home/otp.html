@@ -33,6 +33,7 @@
 </head>
 <body>
     <div class="container">
+        {% include "home/message.html" %}
         <h2>Enter Mobile no</h2>
         <form action="{% url 'registration_page' %}" method="post">
             {%csrf_token%}
@@ -41,5 +42,15 @@
             <input type="submit" value="Submit">
         </form>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      $(document).ready(function() {
+          setTimeout(function(){
+              if ($('#mssg').length > 0) {
+                  $('#mssg').remove();
+              }
+          }, 4000); 
+      });
+  </script>
 </body>
 </html>
