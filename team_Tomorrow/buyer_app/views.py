@@ -54,7 +54,7 @@ def Querylist(request):
         # print("budget === " , type(budget))
 
         if location == 'all':
-            context = create_listings(1) # 1 does not here anything
+            context = create_listings() # 1 does not here anything
             if (budget):
                 budget = float(budget)
                 context = Listings.objects.filter(price__lt=budget)
