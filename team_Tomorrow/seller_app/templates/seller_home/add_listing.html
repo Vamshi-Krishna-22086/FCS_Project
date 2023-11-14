@@ -168,35 +168,35 @@
           <div class="user-details">
             <div class="input-box">
               <span class="details">Building name</span>
-              <input type="text" name="building_name" placeholder="Enter your building name" required />
+              <input type="text" name="building_name" placeholder="Enter your building name" maxlength="40" required />
             </div>
             <div class="input-box">
               <span class="details">Location</span>
-              <input type="text" name="location" placeholder="Enter your location" required />
+              <input type="text" name="location" placeholder="Enter your location" maxlength="40" required />
             </div>
             <div class="input-box">
               <span class="details">Price</span>
-              <input type="text" name="price" placeholder="Enter your price in rs" required />
+              <input type="text" name="price" placeholder="Enter your price in rs" maxlength="40" required />
             </div>
             <div class="input-box">
               <span class="details">Owner name</span>
-              <input type="text" name="owner_name" placeholder="Enter owner name" required />
+              <input type="text" name="owner_name" placeholder="Enter owner name" maxlength="40" required />
             </div>
             <div class="input-box">
               <span class="details">Mobile no</span>
-              <input type="text" name="mobile" placeholder="Enter your Mobile no" pattern="[1-9][0-9]{9}" required />
+              <input type="number" name="mobile" placeholder="Enter your Mobile no"  pattern="[1-9][0-9]{9}" required />
             </div>
             <div class="input-box">
               <span class="details">Description</span>
-              <input type="text" name="description" placeholder="Enter the description" required />
+              <input type="text" name="description" placeholder="Enter the description" maxlength="180" required />
             </div>
             <div class="input-box">
               <span class="details">Email</span>
-              <input type="text"  name="email" required />
+              <input type="text"  name="email" readonly value={{seller_email}} required />
             </div>                    
             <div class="input-box">
               <span class="details">Image of Building</span>
-              <input type="file" name="building_img">
+              <input type="file" maxlength="40" name="building_img">
             </div>
           </div>
           <div class="button">
