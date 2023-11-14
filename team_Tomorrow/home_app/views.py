@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from home_app.models import Seller,Buyer
 from django.contrib.auth.hashers import make_password,check_password
 from django.contrib import messages
-from twilio.rest import Client
+#from twilio.rest import Client
 from django.conf import settings
 from django.core.mail import send_mail
 import random

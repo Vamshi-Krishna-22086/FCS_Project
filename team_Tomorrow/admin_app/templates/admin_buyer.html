@@ -43,7 +43,7 @@
 
 <!-- Navigation bar container -->
 <div class="topnav">
-  <h1>Seller Details</h1>
+  <h1>Buyer Details</h1>
   </div>
  </div>
 
@@ -68,13 +68,13 @@
       <td>{{user.country}}</td>
       <td>{{user.file}}</td>
       <td>
-          <form method="post" action="{% url 'admin-delete-seller' %}">
+          <form method="post" action="{% url 'admin-delete-buyer' %}">
               {% csrf_token %} {# Include the CSRF token for security #}
               <input type="hidden" name="d_id" value="{{user.id}}">
               <input type="hidden" name="d_email" value="{{user.email}}">
               <button type="submit">Delete</button>
           </form>
-{#        <button onclick="alert('Seller Delete')">Delete</button>#}
+{#        <button onclick="alert('User Delete')">Delete</button>#}
       </td>
   </tr>
 {% endfor %}
