@@ -43,8 +43,8 @@ def buyer_home(request):
             if(it.email==email and check_password(password,it.secret)):
                 return render(request, 'buyer_home/buyer_home.html', context)
 
-        return render(request, 'buyer_home/buyer_home.html' , context)
-    return render(request, 'buyer_home/buyer_home.html' , context)
+        return render(request, 'buyer_home/buyer_login.html')
+    return render(request, 'buyer_home/buyer_login.html')
 
 
 def Querylist(request):
