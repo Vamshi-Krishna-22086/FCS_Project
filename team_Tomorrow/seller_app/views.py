@@ -35,12 +35,12 @@ def edit_listing_save(request):
         mobile=request.POST['mobile']
         description=request.POST['description']
         email=request.POST['email']
-        building_img=request.POST['building_img']
+        # building_img=request.POST['building_img']
         seller_email=request.POST['email']
         id1=int(id1)
         
         edit_record=Listings.objects.filter(id=id1)
-        edit_record.update(title=building_name,location=location,price=price,posted_by=owner_name,contact=mobile,description=description,email=email,img=building_img)
+        edit_record.update(title=building_name,location=location,price=price,posted_by=owner_name,contact=mobile,description=description,email=email)
         messages.warning(request, 'seller__listing_edit_successful')
         context = create_listings(seller_email)
         return render(request, 'seller_home/seller_home.html', context)
@@ -53,7 +53,7 @@ def edit_listing_save(request):
 
 def add_listing(request):
     email=request.POST['extra_field_3']
-    print(email)
+    # print(email)
     context = {
         'seller_email': email
     }
