@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from home_app.models import Seller, Listings
+from home_app.models import Buyer, Listings
 from django.contrib.auth.hashers import make_password,check_password
 from django.db.models import  FloatField
 from django.db.models.functions import Cast
@@ -37,7 +37,7 @@ def buyer_home(request):
         seller_email = email
         password=request.POST['password']
         context = create_listings()
-        userData=Seller.objects.all()
+        userData=Buyer.objects.all()
         for it in userData:
             print(check_password(password,it.secret))
             if(it.email==email and check_password(password,it.secret)):
