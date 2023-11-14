@@ -60,7 +60,20 @@ def add_listing(request):
     return render(request, 'seller_home/add_listing.html',context.copy())
 
 def view_profile(request):
-    return render(request, 'seller_home/seller_profile.html')
+    data={}
+    if(request.method=="POST" or request.method=="GET"):
+        email=request.POST['extra_mail_1']
+        seller_data=Seller.objects.get(email=email)
+        data['email']=email
+        data['name']=seller_data.name
+        data['city']=seller_data.city
+        data['state']=seller_data.state
+        data['country']=seller_data.country
+        data['mobile']=seller_data.mobile
+        data['gender']=seller_data.gender
+        return render(request, 'seller_home/seller_profile.html',data)
+    else:
+        return render(request, 'seller_home/seller_login.html')
 
 def delete_listing(request):
     id1=request.POST['extra_field_1']
@@ -95,6 +108,22 @@ def create_listings(email):
         'listings' : listing
     }
     return context.copy()
+
+def seller_home1(request):
+    if(request.method=="POST"):
+        
+        email=request.POST['username']
+        
+        userData=Seller.objects.all()
+        for it in userData:
+            # print(check_password(password,it.secret))
+            if(it.email==email):
+                context = create_listings(email)
+                context['seller_email']=email
+                print(context)
+                return render(request, 'seller_home/seller_home.html', context)
+        # print(userData)
+    return render(request, 'seller_home/seller_login.html')
 
 
 def seller_home(request):
