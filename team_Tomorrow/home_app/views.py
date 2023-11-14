@@ -23,16 +23,16 @@ def registration_page(request):
 
     otp = generate_random_otp()
 
-    client = Client(settings.TWILIO_ACCOUNT_SID, settings.TWILIO_AUTH_TOKEN)
-    message = client.messages.create(
-        body=f'Your OTP is: {otp}',
-        from_=settings.TWILIO_PHONE_NUMBER,
-        to=phone_number
-    )
+    # client = Client(settings.TWILIO_ACCOUNT_SID, settings.TWILIO_AUTH_TOKEN)
+    # message = client.messages.create(
+    #     body=f'Your OTP is: {otp}',
+    #     from_=settings.TWILIO_PHONE_NUMBER,
+    #     to=phone_number
+    # )
     #otp generate end
 
     my_post['generate_otp'] = otp
-
+    print(otp)
 
     return render(request,'home/registration.html',my_post.copy())
 
@@ -46,6 +46,7 @@ def seller_buyer_registrations(request):
         messages.warning(request, 'OTP did not match.')
         return render(request,'home/otp.html')
     if(request.method=="POST" and request.POST['user_type']=='seller'):
+        
         print("seller_successful")
         email=request.POST['email']
         name=request.POST['name']
@@ -57,13 +58,19 @@ def seller_buyer_registrations(request):
         mobile=request.POST['mobile']
         file=request.POST['file']
         gender=request.POST['gender']
-        if(secret==confirm_secret):
-            hash_secret=make_password(secret)
-            ins=Seller(email=email,name=name,city=city,state=state,country=country,secret=hash_secret,mobile=mobile,file=file,gender=gender)
-            ins.save()
-        else:
-            messages.warning(request, 'Password and confirm password did not match.')
+        try:
+            email_check=Seller.objects.get(email=email)
+            mobile_check=Seller.objects.get(mobile=mobile)
+            messages.warning(request, 'mail or mobile is already register')
             return render(request,'home/registration.html')
+        except:          
+            if(secret==confirm_secret):
+                hash_secret=make_password(secret)
+                ins=Seller(email=email,name=name,city=city,state=state,country=country,secret=hash_secret,mobile=mobile,file=file,gender=gender)
+                ins.save()
+            else:
+                messages.warning(request, 'Password and confirm password did not match.')
+                return render(request,'home/registration.html')
         
     elif(request.method=="POST" and request.POST['user_type']=='buyer'):
         print("buyer_successful")
@@ -78,13 +85,19 @@ def seller_buyer_registrations(request):
         file=request.POST['file']
         gender=request.POST['gender']
 
-        if(secret==confirm_secret):
-            hash_secret=make_password(secret)
-            ins=Buyer(email=email,name=name,city=city,state=state,country=country,secret=hash_secret,mobile=mobile,file=file,gender=gender)
-            ins.save()
-        else:
-            messages.warning(request, 'Password and confirm password did not match.')
+        try:
+            email_check=Buyer.objects.get(email=email)
+            mobile_check=Buyer.objects.get(mobile=mobile)
+            messages.warning(request, 'mail or mobile is already register')
             return render(request,'home/registration.html')
+        except:          
+            if(secret==confirm_secret):
+                hash_secret=make_password(secret)
+                ins=Buyer(email=email,name=name,city=city,state=state,country=country,secret=hash_secret,mobile=mobile,file=file,gender=gender)
+                ins.save()
+            else:
+                messages.warning(request, 'Password and confirm password did not match.')
+                return render(request,'home/registration.html')
     else:
         print("unsuceesful")
 

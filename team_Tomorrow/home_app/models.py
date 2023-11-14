@@ -8,7 +8,7 @@ class Seller(models.Model):
     country=models.CharField(max_length=100)
     mobile=models.CharField(max_length=100)
     secret=models.CharField(max_length=100)
-    file=models.CharField(max_length=100)
+    file=models.CharField(max_length=60)
     gender=models.CharField(max_length=100)
     
     class Meta:
@@ -22,7 +22,7 @@ class Buyer(models.Model):
     country=models.CharField(max_length=100)
     mobile=models.CharField(max_length=100)
     secret=models.CharField(max_length=100)
-    file=models.CharField(max_length=100)
+    file=models.CharField(max_length=60)
     gender=models.CharField(max_length=100)
     
     class Meta:
