@@ -2,10 +2,15 @@ from django.shortcuts import render,redirect
 from home_app.models import Seller, Listings
 from django.contrib.auth.hashers import make_password,check_password
 from django.contrib import messages
+from django.contrib.auth import logout
 
 
 def seller_login(request):
     return render(request,'seller_home/seller_login.html')
+
+def seller_logout(request):
+    logout(request)
+    return redirect('/')
 
 def edit_listing_page(request):
     id1=request.POST['extra_field_id']
@@ -61,8 +66,12 @@ def add_listing(request):
 
 def view_profile(request):
     data={}
+    print(request)
     if(request.method=="POST" or request.method=="GET"):
-        email=request.POST['extra_mail_1']
+        try:
+            email=request.POST['extra_mail_1']
+        except:
+            return render(request, 'seller_home/seller_login.html')
         seller_data=Seller.objects.get(email=email)
         data['email']=email
         data['name']=seller_data.name
