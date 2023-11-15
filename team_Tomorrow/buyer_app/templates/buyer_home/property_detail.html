@@ -254,23 +254,25 @@
                       <form method="post">
                         {% csrf_token %}
                         <div class="form-group">
-                          <label for="exampleInputEmail">Enter Title</label>
                           <input
                             type="name"
                             name="name"
                             class="form-control"
                             id="exampleInputEmail"
                             aria-describedby="emailHelp"
+                            value="{{ title }}"
+                            readonly
                           />
                         </div>
 
                         <div class="form-group">
-                          <label for="exampleInputPrice">Enter Amount</label>
                           <input
                             type="number"
                             name="amount"
                             class="form-control"
                             id="exampleInputPrice"
+                            value="{{ amount }}"
+                            readonly
                           />
                         </div>
 

@@ -13,19 +13,26 @@ def buyer_login(request):
     return render(request,'buyer_home/buyer_login.html')
 
 def property_detail(request):
-    if request.method == "POST":
+    if request.method == "POST" or request.method == "GET":
         title = request.POST.get("title")
-        price = request.POST.get("price")
+        amount = request.POST.get("price")
         property_id = request.POST.get("property_id")
         
-        amount = int(request.POST.get("amount")) * 100
+        # amount = int(request.POST.get("price")) * 100
         client = razorpay.Client(auth =("rzp_test_1r5QwzfBXGKTTZ", "8avjvrHMfFkiyua1E0dnM4vM"))
         payment = client.order.create({'amount':amount, 'currency':'INR', 'payment_capture':'1'})
+        mydata = {}
+        mydata['title']=title
+        mydata['amount']=amount
+        mydata['payment']=payment
+        print(title)
+        print(amount)
         print(payment)
-        property = Property(name = name , amount = amount, payment_id = payment['id'])
+        print("abjh")
+        property = Property(name = title , amount = amount, payment_id = payment['id'])
         property.save()
-        return render(request , "buyer_home/property_detail.html" , {'payment' : payment})    
-    return render(request,'buyer_home/property_detail.html')
+        return render(request , "buyer_home/property_detail.html" , mydata.copy())    
+    return render(request,'buyer_home/buyer_home.html')
 
 @csrf_exempt
 def success(request):
