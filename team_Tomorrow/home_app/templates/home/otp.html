@@ -37,7 +37,8 @@
         <h2>Enter Mobile no</h2>
         <form action="{% url 'registration_page' %}" method="post">
             {%csrf_token%}
-            <input type="number" name="mobile" placeholder="Enter Mobile no" pattern="[1-9][0-9]{9}"  required>
+            <input type="text" name="email" placeholder="Enter Email"  required>
+            <br>
             <br>
             <input type="submit" value="Submit">
         </form>

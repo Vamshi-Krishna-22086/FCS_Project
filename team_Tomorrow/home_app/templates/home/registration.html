@@ -172,7 +172,7 @@
             </div>
             <div class="input-box">
               <span class="details">Email</span>
-              <input type="text" name="email" placeholder="Enter your email" maxlength="25" required />
+              <input type="text" name="email" readonly placeholder="Enter your email" value="{{email}}" maxlength="25" required />
             </div>
             <div class="input-box">
               <span class="details">City</span>
@@ -188,7 +188,7 @@
             </div>
             <div class="input-box">
               <span class="details">Mobile no</span>
-              <input type="number" readonly name="mobile" value="{{mobile}}" />
+              <input type="number" name="mobile" pattern="[1-9][0-9]{9}" required />
             </div>
             <div class="input-box">
               <span class="details">Password</span>

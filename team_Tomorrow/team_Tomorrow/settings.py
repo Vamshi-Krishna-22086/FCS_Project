@@ -38,6 +38,14 @@ TWILIO_AUTH_TOKEN = '5e6299e39ce6e40428b52ce439d4d2a0'
 TWILIO_PHONE_NUMBER = '+13343528281'
 
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'fcsgroup20@gmail.com'
+EMAIL_HOST_PASSWORD = 'nvdq qtya pwmr jfco'
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -93,11 +101,11 @@ DATABASES = {
         # "ENGINE": "django.db.backends.sqlite3",
         # "NAME": BASE_DIR / "db.sqlite3",
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'tomorrowdb',
-        'USER': 'fcs',
-        'PASSWORD': 'Group@2023',
+        'NAME': 'newschema',
+        'USER': 'root',
+        'PASSWORD': 'Group2023',
         'PORT':3306,
-        'HOST':'192.168.3.7',
+        'HOST':'127.0.0.1',
 
     }
 }
