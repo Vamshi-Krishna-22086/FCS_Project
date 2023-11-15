@@ -238,14 +238,14 @@
             
 
             <li>
-              <form method="POST" action="{% url 'buyer_login' %}">
+              <form method="POST" action="{% url 'buyer_home1' %}">
                 {% csrf_token %}
                 <input type="hidden" name="username" value={{email}}>
                 <button type="submit">Home</button>
               </form>
             </li>
 
-            <li><a href="{% url 'buyer_login' %}">Logout</a></li>
+            {% comment %} <li><a href="{% url 'buyer_login' %}">Logout</a></li> {% endcomment %}
           </ul>
         </div>
       </div>

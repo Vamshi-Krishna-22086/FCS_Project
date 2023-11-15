@@ -88,6 +88,18 @@ def buyer_home(request):
         return render(request, 'buyer_home/buyer_login.html')
     return render(request, 'buyer_home/buyer_login.html')
 
+def buyer_home1(request):
+
+    if(request.method=="POST" or request.method=="GET"):
+        
+        email=request.POST['username']
+        seller_email = email
+        context = create_listings()
+        context['buyer_email']=email
+        return render(request, 'buyer_home/buyer_home.html', context)
+
+    return render(request, 'buyer_home/buyer_login.html')
+
 
 def Querylist(request):
     if (request.method=="POST"):

@@ -81,6 +81,13 @@
                   <button type="submit">View Profile</button>
                 </form>
               </li>
+              <li><a href="{% url 'seller-home' %}">Logout</a></li>
+              {% comment %} <li class="active">
+                <form method="POST" action="{% url 'seller-logout' %}">
+                  {% csrf_token %}
+                  <button type="submit">Logout</button>
+                </form>
+              </li> {% endcomment %}
               {% comment %} <li><a href="#">Logout</a></li> {% endcomment %}
             </ul>
           </div>
