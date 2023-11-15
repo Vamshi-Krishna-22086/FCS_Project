@@ -26,5 +26,7 @@ urlpatterns = [
     path('lesser/', include('lesser_app.urls')),
     path('register/seller-buyer-registration/', views.seller_buyer_registrations, name='seller-buyer-registration'),
     path('buyer/',include('buyer_app.urls')),
-    path('otp/',views.otp_sent,name='otp'),]
+    path('otp/',views.otp_sent,name='otp'),
+    path('usereKYC/',views.user_ekyc,name='user-ekyc'),
+    ]
     

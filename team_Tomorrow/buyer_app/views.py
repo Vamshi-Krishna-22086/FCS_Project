@@ -14,7 +14,10 @@ def buyer_login(request):
 
 def property_detail(request):
     if request.method == "POST":
-        name = request.POST.get("name")
+        title = request.POST.get("title")
+        price = request.POST.get("price")
+        property_id = request.POST.get("property_id")
+        
         amount = int(request.POST.get("amount")) * 100
         client = razorpay.Client(auth =("rzp_test_1r5QwzfBXGKTTZ", "8avjvrHMfFkiyua1E0dnM4vM"))
         payment = client.order.create({'amount':amount, 'currency':'INR', 'payment_capture':'1'})

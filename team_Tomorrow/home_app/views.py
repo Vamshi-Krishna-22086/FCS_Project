@@ -9,6 +9,43 @@ import random
 import requests
 
 
+# user eKYC
+def user_ekyc(request):
+    if request.method == 'POST':
+        # Get data from the request
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        # Create a JSON object
+        user_data = {
+            'email': username,
+            'password': password
+        }
+
+        # Send the JSON object to an API
+        api_url = 'https://192.168.3.39:5000/kyc'  # Replace with your API endpoint
+        response = requests.post(api_url, json=user_data, verify=False)
+
+        # Check if the request was successful
+        if response.status_code == 200:
+            # Get the JSON response from the API
+            api_response = response.json()
+            # print(api_response)
+            # return JsonResponse(api_response)
+
+            if api_response.get('status') == "success" : 
+                return redirect('register/')
+            else :
+                # Display an error message on the login page
+                messages.error(request, '')
+        else:
+            # Handle the error if the API request fails
+            messages.error(request, f'API request failed with status code: {response.status_code}')
+
+
+    return render(request, 'user_kyc.html')
+
+
 def landing_page(request):
     return render(request,'home/landing_page.html')
 

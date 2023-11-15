@@ -123,13 +123,18 @@
               <div class="footer-realestates-columns">
                 <div class="row">
                   <div class="col-sm-6">
-                    <a
+                    <!-- <a
                       href="property-detail"
                       class="btn btn-primary btn-block"
                       data-original-title
                       title
-                      >View Property</a
-                    >
+                      >View Property</a> -->
+                      <form action="property-detail" method="get">
+                        <input type="hidden" name="property_id" value="{{ post.id }}">
+                        <input type="hidden" name="title" value="{{ post.title }}">
+                        <input type="hidden" name="price" value="{{ post.price }}">
+                        <button type="submit" class="btn btn-primary btn-block">View Property</button>
+                    </form>
                   </div>
                 
                 </div>
