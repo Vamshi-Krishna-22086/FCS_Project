@@ -31,7 +31,7 @@ def admin_kyc(request):
             # print(api_response)
             # return JsonResponse(api_response)
 
-            if api_response.get('status') == "success" : 
+            if api_response.get('status') == "success" and username == "vamshi22086@iiitd.ac.in": 
                 return redirect('admin-home/')
             else :
                 # Display an error message on the login page

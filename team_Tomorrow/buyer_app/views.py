@@ -14,7 +14,10 @@ def buyer_login(request):
 
 def property_detail(request):
     if request.method == "POST":
-        name = request.POST.get("name")
+        title = request.POST.get("title")
+        price = request.POST.get("price")
+        property_id = request.POST.get("property_id")
+        
         amount = int(request.POST.get("amount")) * 100
         client = razorpay.Client(auth =("rzp_test_1r5QwzfBXGKTTZ", "8avjvrHMfFkiyua1E0dnM4vM"))
         payment = client.order.create({'amount':amount, 'currency':'INR', 'payment_capture':'1'})
@@ -61,13 +64,14 @@ def create_listings():
     return context.copy()
 
 def buyer_home(request):
-    context = create_listings()
+
     if(request.method=="POST"):
         
         email=request.POST['username']
         seller_email = email
         password=request.POST['password']
         context = create_listings()
+        context['buyer_email']=email
         userData=Buyer.objects.all()
         for it in userData:
             print(check_password(password,it.secret))
@@ -124,6 +128,23 @@ def Querylist(request):
 
 def digital_contract(request):
     return render(request, 'buyer_home/digital_contract.html')
+
+def view_profile(request):
+    data={}
+    if(request.method=="POST"):
+        email=request.POST['extra_mail_1']
+        print(email)
+        seller_data=Buyer.objects.get(email=email)
+        data['email']=email
+        data['name']=seller_data.name
+        data['city']=seller_data.city
+        data['state']=seller_data.state
+        data['country']=seller_data.country
+        data['mobile']=seller_data.mobile
+        data['gender']=seller_data.gender
+        return render(request, 'buyer_home/buyer_profile.html',data)
+    else:
+        return render(request, 'buyer_home/buyer_login.html')
 
 
 

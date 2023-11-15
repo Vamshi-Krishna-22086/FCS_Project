@@ -32,6 +32,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# uncomment this during production
+# DEBUG = False
+
+# ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+
 
 TWILIO_ACCOUNT_SID = 'ACdefb292c748f18da9bb76195ab48420e'
 TWILIO_AUTH_TOKEN = '5e6299e39ce6e40428b52ce439d4d2a0'
