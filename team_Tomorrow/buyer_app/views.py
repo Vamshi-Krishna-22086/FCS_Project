@@ -14,8 +14,8 @@ def buyer_login(request):
 
 def property_detail(request):
     if request.method == "POST" or request.method == "GET":
-        title = request.POST.get("title")
-        amount = request.POST.get("price")
+        title = request.GET.get("title")
+        amount = request.GET.get("price")
         property_id = request.POST.get("property_id")
         
         # amount = int(request.POST.get("price")) * 100

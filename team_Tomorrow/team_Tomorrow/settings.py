@@ -51,7 +51,7 @@ EMAIL_HOST_USER = 'fcsgroup20@gmail.com'
 EMAIL_HOST_PASSWORD = 'nvdq qtya pwmr jfco'
 
 
-SESSION_COOKIE_AGE = 60
+SESSION_COOKIE_AGE = 300
 SESSION_SAVE_EVERY_REQUEST = True
 
 
@@ -109,12 +109,19 @@ DATABASES = {
     "default": {
         # "ENGINE": "django.db.backends.sqlite3",
         # "NAME": BASE_DIR / "db.sqlite3",
+        # 'ENGINE': 'django.db.backends.mysql',
+        # 'NAME': 'newschema',
+        # 'USER': 'root',
+        # 'PASSWORD': 'Group2023',
+        # 'PORT':3306,
+        # 'HOST':'127.0.0.1',
+
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'newschema',
-        'USER': 'root',
-        'PASSWORD': 'Group2023',
+        'NAME': 'tomorrowdb',
+        'USER': 'fcs',
+        'PASSWORD': 'Group@2023',
         'PORT':3306,
-        'HOST':'127.0.0.1',
+        'HOST':'192.168.3.7',
 
     }
 }
