@@ -3,10 +3,41 @@ from home_app.models import Buyer, Listings
 from django.contrib.auth.hashers import make_password,check_password
 from django.db.models import  FloatField
 from django.db.models.functions import Cast
+import razorpay
+from .models import Property
+from django.views.decorators.csrf import csrf_exempt
+
 # Create your views here.
 
 def buyer_login(request):
     return render(request,'buyer_home/buyer_login.html')
+
+def property_detail(request):
+    if request.method == "POST":
+        name = request.POST.get("name")
+        amount = int(request.POST.get("amount")) * 100
+        client = razorpay.Client(auth =("rzp_test_1r5QwzfBXGKTTZ", "8avjvrHMfFkiyua1E0dnM4vM"))
+        payment = client.order.create({'amount':amount, 'currency':'INR', 'payment_capture':'1'})
+        print(payment)
+        property = Property(name = name , amount = amount, payment_id = payment['id'])
+        property.save()
+        return render(request , "buyer_home/property_detail.html" , {'payment' : payment})    
+    return render(request,'buyer_home/property_detail.html')
+
+@csrf_exempt
+def success(request):
+    if request.method == "POST":
+        a = request.POST
+        order_id = ""
+        for key, val in a.items():
+            if key == 'razorpay_order_id':
+                order_id = val
+                break
+        user = Property.objects.filter(payment_id=order_id).first()
+        user.paid = True
+        user.save()
+        
+    return render(request,'buyer_home/success.html')
 
 def create_listings():
     myListings = Listings.objects.all()
@@ -91,7 +122,8 @@ def Querylist(request):
         'listings' : listings})
             
 
-
+def digital_contract(request):
+    return render(request, 'buyer_home/digital_contract.html')
 
 
 
