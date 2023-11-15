@@ -159,7 +159,7 @@ def add_listing_save(request):
         ins.save()
         # else:
         #     messages.warning(request, 'Password and confirm password did not match.')
-        return render(request,'seller_home/add_listing.html')
+        return render(request,'seller_home/seller_login.html')
     else:
         print("seller__listing_save_unsuceesful")
 
