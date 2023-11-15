@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.js"></script>
+    <style>
+        @media print {
+            /* Use display: none to hide the button when printing */
+            input[type="button"] {
+                display: none;
+            }
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1, h2 {
+            text-align: center;
+        }
+
+        .contract-content {
+            margin-top: 20px;
+        }
+
+        p {
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+
+        .signature-section {
+            margin-top: 50px;
+        }
+
+        .signature {
+            margin-top: 20px;
+        }
+
+        .no-print {
+            display: none;
+        }
+
+        @media print {
+            body {
+                margin: 0;
+                padding: 20px;
+            }
+
+            .no-print {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Property Sale Agreement</h1>
+
+    <div class="contract-content">
+        <h2>Parties</h2>
+        <p>This agreement is entered into on this <span id="currentDatePlaceholder">[Date]</span> between:</p>
+        <p><strong>Party A:</strong> [Name and Address]</p>
+        <p><strong>Party B:</strong> [Name and Address]</p>
+
+        <h2>Property Details</h2>
+        <p>The property subject to this agreement is described as follows:</p>
+        <p>[Property Description]</p>
+
+        <h2>Terms and Conditions</h2>
+        <p>1.     The sale shall be completed within a period of 3 months from <span id="currentDatePlaceholder">[Date]</span> and it is hereby agreed that time is the essence of the contract.</p>
+        <p>2.     The vendor declares that the sale of the house will be without encumbrances.</p>
+        <p>3.     The vendor will hand over the vacant possession of the house on the execution and registration of conveyance deed.</p>
+        <p>4.     If the purchaser commits breach of the agreement, the vendor shall be entitled to forfeit the earnest money paid by the purchaser to the vendor and the vendor will be at liberty to resell the property to any person.</p>
+        <p>5.     It the vendor commits breach of the agreement, he shall be liable to refund earnest money, received by him and a sum of Rs. ................. by way of liquidated damages.</p>
+        <p>6.  The vendor shall execute the conveyance deed in favour of the purchaser or his nominee as the purchaser may require, on receipt of the balance consideration.</p>
+        <p>7.  The vendor shall at his own costs obtain clearance certificate under section 230A, Income tax Act, 1961 and other permissions required for the completion of the sale.</p>
+        <p>8.  The expenses for, preparation of the conveyance deed, cost of stamp, registration charges and all other cut of pocket expenses shall be borne by the purchaser.</p>
+
+        <div class="signature-section">
+            <h2>Signatures</h2>
+            <p>Both parties acknowledge their agreement to the terms and conditions set forth in this contract by signing below:</p>
+            <div class="signature">
+                <p><strong>Party A:</strong> ________________________</p>
+                <p><strong>Party B:</strong> ________________________</p>
+            </div>
+        </div>
+
+
+        <input type="button" value="Print this page" onclick="printpage()">
+
+        <script>
+            function printpage()
+              {
+              window.print()
+              }
+            </script>
+</body>
+</html>

@@ -19,8 +19,11 @@ from django.urls import path,include
 from admin_app import views
 
 urlpatterns = [
-    path('' , views.admin_login , name='admin-login'),
+    # path('' , views.admin_login , name='admin-login'),
+    path('' , views.admin_kyc , name='admin-login'),
     path('admin-home/', views.admin_home, name='admin-home'),
     path('admin-home/admin-sellers/', views.admin_seller, name='admin-seller'),
-    path('admin-delete-seller/', views.admin_delete_seller, name='admin-delete-seller')
+    path('admin-delete-seller/', views.admin_delete_seller, name='admin-delete-seller'),
+    path('admin-home/admin-buyers/', views.admin_buyer, name='admin-buyer'),
+    path('admin-delete-buyer/', views.admin_delete_buyer, name='admin-delete-buyer')
 ]

@@ -233,7 +233,7 @@
                   <div class="primary-image">
                     <a href="#" class="theater" rel="group" hidefocus="true">
                       <img
-                        src="https://www.bootdey.com/image/700x300/FF69B4/000000"
+                        src="https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg?auto=compress&cs=tinysrgb&w=600"
                         class="img-responsive"
                         alt
                       />
@@ -244,44 +244,95 @@
               </div>
               <div class="col-md-5">
                 <div class="product-info">
-                  <h3>3015 Grand Avenue, CocoWalk</h3>
                   <div class="wp-block property list no-border">
-                    <div class="wp-block-content clearfix">
-                      <span class="pull-left">
-                        <span class="price">$230</span>
-                        <span class="period">per month</span>
-                      </span>
+                  
+
+
+                    <!-- iss code ko change krna hai or yaha pe DB se title or price lana hai -->
+
+                    <div class="col-6 mx-auto">
+                      <form method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                          <label for="exampleInputEmail">Enter Title</label>
+                          <input
+                            type="name"
+                            name="name"
+                            class="form-control"
+                            id="exampleInputEmail"
+                            aria-describedby="emailHelp"
+                          />
+                        </div>
+
+                        <div class="form-group">
+                          <label for="exampleInputPrice">Enter Amount</label>
+                          <input
+                            type="number"
+                            name="amount"
+                            class="form-control"
+                            id="exampleInputPrice"
+                          />
+                        </div>
+
+                        <!-- yaha tak ka.... -->
+
+
+
+                        <span class="clearfix"></span>
+                        <p>
+                          Lorem ipsum dolor sit amet, consectetur adipisicing
+                          elit, sed do eiusmod tempor incididunt ut labore et
+                          dolore magna aliqua.
+                        </p>
+                        <div class="section-title-wr">
+                          <h3 class="section-title left">Location details</h3>
+                        </div>
+                        <table
+                          class="table table-bordered table-striped table-hover table-responsive"
+                        >
+                          <tbody>
+                            <tr>
+                              <td><strong>Rooms:</strong> 5</td>
+                              <td><strong>Bedrooms:</strong> 4</td>
+                              <td><strong>Bathrooms:</strong> 2</td>
+                            </tr>
+                            <tr>
+                              <td><strong>Price:</strong> $23000</td>
+                              <td><strong>Year built:</strong> 1991</td>
+                              <td>
+                                <strong>Available from:</strong> 1 August 2014
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <button type="submit" class="btn btn-success btn-block">
+                          Purchase Now
+                        </button>
+                      </form>
                     </div>
-                    <span class="clearfix"></span>
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua.
-                    </p>
-                    <div class="section-title-wr">
-                      <h3 class="section-title left">Location details</h3>
+
+                    {% if payment %}
+                    <div class="text-center mx-auto">
+                    <form action="../pay-success/" method="POST">
+                      <script
+                          src="https://checkout.razorpay.com/v1/checkout.js"
+                          data-key="rzp_test_1r5QwzfBXGKTTZ" // Enter the Test API Key ID generated from Dashboard → Settings → API Keys
+                          data-amount="{{payment.amount}}" // Amount is in currency subunits. Hence, 29935 refers to 29935 paise or ₹299.35.
+                          data-currency="INR"           // You can accept international payments by changing the currency code. Contact our Support Team to enable International for your account
+                          data-order_id="{{payment.id}}"// Replace with the order_id generated by you in the backend.
+                          data-buttontext="Pay with Razorpay"
+                          data-name="Team Tomorrow"
+                          data-description="Team Tomorrow Property deal"
+                          data-image="https://example.com/your_logo.jpg"
+                          data-prefill.name="Team Tomorrow"
+                          data-prefill.email="team-tomorrow@fcs-iiitd.com"
+                          data-theme.color="#3333cc"
+                      ></script>
+                      <input type="hidden" custom="Hidden Element" name="hidden"/>
+                      </form>
                     </div>
-                    <table
-                      class="table table-bordered table-striped table-hover table-responsive"
-                    >
-                      <tbody>
-                        <tr>
-                          <td><strong>Rooms:</strong> 5</td>
-                          <td><strong>Bedrooms:</strong> 4</td>
-                          <td><strong>Bathrooms:</strong> 2</td>
-                        </tr>
-                        <tr>
-                          <td><strong>Price:</strong> $23000</td>
-                          <td><strong>Year built:</strong> 1991</td>
-                          <td>
-                            <strong>Available from:</strong> 1 August 2014
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                    <button type="button" class="btn btn-primary btn-lg btn-block">
-                      Purchase Now
-                    </button>
+                    {% endif %}
+
                   </div>
                 </div>
               </div>
@@ -322,6 +373,7 @@
         </div>
       </div>
     </div>
+    
     <!-- Footer -->
     <footer class="text-center">
       &copy; 2023 Team Tomorrow FCS. All rights reserved.

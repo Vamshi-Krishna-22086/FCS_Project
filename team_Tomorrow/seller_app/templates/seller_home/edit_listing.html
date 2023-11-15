@@ -168,36 +168,36 @@
           <div class="user-details">
             <div class="input-box">
               <span class="details">Building name</span>
-              <input type="text" name="building_name" value="{{title}}" required />
+              <input type="text" name="building_name" maxlength="40" value="{{title}}" required />
             </div>
             <div class="input-box">
               <span class="details">Location</span>
-              <input type="text" name="location" value="{{location}}" required />
+              <input type="text" name="location" maxlength="40" value="{{location}}" required />
             </div>
             <div class="input-box">
               <span class="details">Price</span>
-              <input type="text" name="price" value="{{price}}" required />
+              <input type="text" name="price" maxlength="40" value="{{price}}" required />
             </div>
             <div class="input-box">
               <span class="details">Owner name</span>
-              <input type="text" name="owner_name" value="{{posted_by}}" required />
+              <input type="text" name="owner_name" maxlength="40" value="{{posted_by}}" required />
             </div>
             <div class="input-box">
               <span class="details">Mobile no</span>
-              <input type="text" name="mobile" value="{{seller_contact}}" pattern="[1-9][0-9]{9}" required />
+              <input type="number" name="mobile"  value="{{seller_contact}}" pattern="[1-9][0-9]{9}" required />
             </div>
             <div class="input-box">
               <span class="details">Description</span>
-              <input type="text" name="description" value="{{description}}" required />
+              <input type="text" name="description" maxlength="180" value="{{description}}" required />
             </div>
             <div class="input-box">
               <span class="details">Email</span>
-              <input type="text" readonly value="{{email}}" name="email" required />
+              <input type="text" readonly value="{{email}}" maxlength="40" name="email" required />
             </div>
-            <div class="input-box">
+            {% comment %} <div class="input-box">
               <span class="details">Image of Building</span>
-              <input type="file" value="{{building_img}}" name="building_img">
-            </div>
+              <input type="file" value="{{building_img}}" maxlength="40" name="building_img">
+            </div> {% endcomment %}
           </div>
           <div class="button">
             <input type="hidden" name="extra_field_id" value="{{id}}">
