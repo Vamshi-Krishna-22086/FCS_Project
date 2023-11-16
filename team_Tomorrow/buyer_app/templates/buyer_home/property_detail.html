@@ -211,16 +211,9 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Team Tomorrow Property</a>
+          <a class="navbar-brand"  href="{% url 'buyer_home' %}" >Team Tomorrow Property</a>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="/Seller_listing.html">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="/Seller_profile.html"> View Profile</a></li>
-            <li><a href="#">Logout</a></li>
-          </ul>
-        </div>
+        
       </div>
     </nav>
     <div class="estate">
@@ -239,52 +232,32 @@
                       />
                     </a>
                   </div>
-                  
                 </div>
               </div>
               <div class="col-md-5">
                 <div class="product-info">
                   <div class="wp-block property list no-border">
-                  
-
-
-                    <!-- iss code ko change krna hai or yaha pe DB se title or price lana hai -->
-
                     <div class="col-6 mx-auto">
                       <form method="post">
                         {% csrf_token %}
                         <div class="form-group">
-                          <input
-                            type="text"
-                            name="name"
-                            class="form-control"
-                            id="exampleInputEmail"
-                            aria-describedby="emailHelp"
-                            value="{{ title }}"
-                            readonly
-                          />
+                          <h2>
+                            <strong>{{ title }}</strong>
+                          </h2>
                         </div>
 
                         <div class="form-group">
-                          <input
-                            type="text"
-                            name="amount"
-                            class="form-control"
-                            id="exampleInputPrice"
-                            value="{{ amount }}"
-                            readonly
-                          />
+                          <h4>
+                            <strong>Rs.{{ amount }}</strong>
+                          </h4>
                         </div>
-
-                        <!-- yaha tak ka.... -->
-
-
 
                         <span class="clearfix"></span>
                         <p>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing
-                          elit, sed do eiusmod tempor incididunt ut labore et
-                          dolore magna aliqua.
+                          Spacious four-bedroom, two-bathroom home with five
+                          rooms. Features include modern amenities, ample living
+                          space, and a welcoming ambiance, making it an ideal
+                          residence for families.
                         </p>
                         <div class="section-title-wr">
                           <h3 class="section-title left">Location details</h3>
@@ -299,42 +272,69 @@
                               <td><strong>Bathrooms:</strong> 2</td>
                             </tr>
                             <tr>
-                              <td><strong>Price:</strong> $23000</td>
-                              <td><strong>Year built:</strong> 1991</td>
+                              <td><strong>Price:</strong> Rs.{{ amount }}</td>
+                              <td><strong>Year built:</strong> 2023</td>
                               <td>
-                                <strong>Available from:</strong> 1 August 2014
+                                <strong>Available from:</strong> 16 Nov 2023
                               </td>
                             </tr>
                           </tbody>
                         </table>
-                        <button type="submit" class="btn btn-success btn-block">
-                          Purchase Now
-                        </button>
                       </form>
                     </div>
+                    <label for="termsCheckbox">
+                      <input
+                        type="checkbox"
+                        id="termsCheckbox"
+                        name="termsCheckbox"
+                      />
+                      I accept the terms and conditions
+                    </label>
 
                     {% if payment %}
                     <div class="text-center mx-auto">
-                    <form action="../pay-success/" method="POST">
-                      <script
+                      <form
+                        action="../pay-success/"
+                        method="POST"
+                        onsubmit="return validateTermsCheckbox()"
+                      >
+                        <script
                           src="https://checkout.razorpay.com/v1/checkout.js"
-                          data-key="rzp_test_1r5QwzfBXGKTTZ" // Enter the Test API Key ID generated from Dashboard → Settings → API Keys
-                          data-amount="{{payment.amount}}" // Amount is in currency subunits. Hence, 29935 refers to 29935 paise or ₹299.35.
-                          data-currency="INR"           // You can accept international payments by changing the currency code. Contact our Support Team to enable International for your account
-                          data-order_id="{{payment.id}}"// Replace with the order_id generated by you in the backend.
-                          data-buttontext="Pay with Razorpay"
+                          data-key="rzp_test_1r5QwzfBXGKTTZ"
+                          data-amount="{{payment.amount}}"
+                          data-currency="INR"
+                          data-order_id="{{payment.id}}"
+                          data-buttontext="Make Payment"
                           data-name="Team Tomorrow"
                           data-description="Team Tomorrow Property deal"
                           data-image="https://example.com/your_logo.jpg"
                           data-prefill.name="Team Tomorrow"
                           data-prefill.email="team-tomorrow@fcs-iiitd.com"
                           data-theme.color="#3333cc"
-                      ></script>
-                      <input type="hidden" custom="Hidden Element" name="hidden"/>
+                        ></script>
+                        <input
+                          type="hidden"
+                          custom="Hidden Element"
+                          name="hidden"
+                        />
                       </form>
                     </div>
                     {% endif %}
 
+                    <script>
+                      function validateTermsCheckbox() {
+                        var checkbox = document.getElementById("termsCheckbox");
+
+                        if (checkbox.checked) {
+                          return true; // Proceed with the form submission
+                        } else {
+                          alert(
+                            "Please accept the terms and conditions before making the payment."
+                          );
+                          return false; // Cancel the form submission
+                        }
+                      }
+                    </script>
                   </div>
                 </div>
               </div>
@@ -351,18 +351,69 @@
                             </h3>
                           </div>
                           <p>
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing
-                            elit, sed diam nonummy nibh euismod tincidunt ut
-                            laoreet dolore magna aliquam erat volutpat. Ut wisi
-                            enim ad minim veniam, quis nostrud exerci tation
-                            ullamcorper suscipit lobortis nisl ut aliquip ex ea
-                            commodo consequat. Duis autem vel eum iriure dolor
-                            in hendrerit in vulputate velit esse molestie
-                            consequat, vel illum dolore eu feugiat nulla
-                            facilisis at vero eros et accumsan et iusto odio
-                            dignissim qui blandit praesent luptatum zzril
-                            delenit augue duis dolore te feugait nulla facilisi.
+                            Nestled in the heart of a serene suburban
+                            neighborhood, this charming three-bedroom,
+                            two-bathroom residence epitomizes modern comfort and
+                            style. The exterior boasts a timeless blend of brick
+                            and siding, surrounded by a lush, meticulously
+                            landscaped yard, creating an inviting curb appeal.
+                            Step inside to discover an open-concept living space
+                            flooded with natural light, adorned with gleaming
+                            hardwood floors and contemporary finishes. The
+                            gourmet kitchen features stainless steel appliances,
+                            granite countertops, and a spacious island, perfect
+                            for culinary enthusiasts and entertaining guests.
+                            The master suite offers a tranquil retreat with a
+                            spa-like en-suite bathroom and ample closet space. A
+                            cozy fireplace in the living room, coupled with a
+                            private backyard patio, adds to the allure of this
+                            inviting property, making it an ideal haven for both
+                            relaxation and social gatherings. Conveniently
+                            located near schools, parks, and amenities, this
+                            home seamlessly combines functionality with
+                            aesthetic appeal.
                             <br /><br />
+                          </p>
+                          <h2>Terms and Conditions</h2>
+                          <p>
+                            1. The vendor declares that the sale of the house
+                            will be without encumbrances.
+                          </p>
+                          <p>
+                            2. The vendor will hand over the vacant possession
+                            of the house on the execution and registration of
+                            conveyance deed.
+                          </p>
+                          <p>
+                            3. If the purchaser commits breach of the agreement,
+                            the vendor shall be entitled to forfeit the earnest
+                            money paid by the purchaser to the vendor and the
+                            vendor will be at liberty to resell the property to
+                            any person.
+                          </p>
+                          <p>
+                            4. It the vendor commits breach of the agreement, he
+                            shall be liable to refund earnest money, received by
+                            him and a sum of Rs. {{amount}} by way of
+                            liquidated damages.
+                          </p>
+                          <p>
+                            5. The vendor shall execute the conveyance deed in
+                            favour of the purchaser or his nominee as the
+                            purchaser may require, on receipt of the balance
+                            consideration.
+                          </p>
+                          <p>
+                            6. The vendor shall at his own costs obtain
+                            clearance certificate under section 230A, Income tax
+                            Act, 1961 and other permissions required for the
+                            completion of the sale.
+                          </p>
+                          <p>
+                            7. The expenses for, preparation of the conveyance
+                            deed, cost of stamp, registration charges and all
+                            other cut of pocket expenses shall be borne by the
+                            purchaser.
                           </p>
                         </div>
                       </div>
@@ -375,7 +426,7 @@
         </div>
       </div>
     </div>
-    
+
     <!-- Footer -->
     <footer class="text-center">
       &copy; 2023 Team Tomorrow FCS. All rights reserved.

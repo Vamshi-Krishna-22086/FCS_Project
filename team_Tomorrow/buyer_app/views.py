@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from home_app.models import Buyer, Listings
+from home_app.models import Buyer, Listings, Seller
 from django.contrib.auth.hashers import make_password,check_password
 from django.db.models import  FloatField
 from django.db.models.functions import Cast
@@ -8,30 +8,26 @@ from .models import Property
 from django.views.decorators.csrf import csrf_exempt
 from django_ratelimit.decorators import ratelimit
 
-
-
 # Create your views here.
 @ratelimit(key='ip', rate='10/m', block=True)
 def buyer_login(request):
     return render(request,'buyer_home/buyer_login.html')
-
+    
 def property_detail(request):
     if request.method == "POST" or request.method == "GET":
         title = request.GET.get("title")
         amount = request.GET.get("price")
+        description = request.GET.get("description")
         property_id = request.POST.get("property_id")
-        
-        # amount = int(request.POST.get("price")) * 100
+        amount1 = int(request.GET.get("price")) * 100
         client = razorpay.Client(auth =("rzp_test_1r5QwzfBXGKTTZ", "8avjvrHMfFkiyua1E0dnM4vM"))
-        payment = client.order.create({'amount':amount, 'currency':'INR', 'payment_capture':'1'})
+        payment = client.order.create({'amount':amount1, 'currency':'INR', 'payment_capture':'1'})
         mydata = {}
         mydata['title']=title
         mydata['amount']=amount
         mydata['payment']=payment
-        print(title)
-        print(amount)
-        print(payment)
-        print("abjh")
+        mydata['description']=description
+        
         property = Property(name = title , amount = amount, payment_id = payment['id'])
         property.save()
         return render(request , "buyer_home/property_detail.html" , mydata.copy())    
@@ -149,9 +145,6 @@ def Querylist(request):
         'listings' : listings})
             
 
-def digital_contract(request):
-    return render(request, 'buyer_home/digital_contract.html')
-
 @ratelimit(key='ip', rate='10/m', block=True)
 def view_profile(request):
     data={}
@@ -170,5 +163,10 @@ def view_profile(request):
     else:
         return render(request, 'buyer_home/buyer_login.html')
 
+def digital_contract(request):
+    data={}
+    if(request.method=="GET"):
+        property_id = request.GET.get("property_id")
+        return render(request, 'buyer_home/digital_contract.html')
 
 
