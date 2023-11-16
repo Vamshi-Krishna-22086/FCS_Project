@@ -8,8 +8,8 @@ from .models import Property
 from django.views.decorators.csrf import csrf_exempt
 from django_ratelimit.decorators import ratelimit
 
-# Create your views here.
-@ratelimit(key='ip', rate='10/m', block=True)
+
+
 def buyer_login(request):
     return render(request,'buyer_home/buyer_login.html')
     
@@ -48,6 +48,7 @@ def success(request):
         
     return render(request,'buyer_home/success.html')
 
+
 def create_listings():
     myListings = Listings.objects.all()
     listings = []
@@ -69,13 +70,12 @@ def create_listings():
     }
     return context.copy()
 
-@ratelimit(key='ip', rate='10/m', block=True)
+
 def buyer_home(request):
 
     if(request.method=="POST"):
         
         email=request.POST['username']
-        seller_email = email
         password=request.POST['password']
         context = create_listings()
         context['buyer_email']=email
@@ -144,6 +144,9 @@ def Querylist(request):
                 return render(request, 'buyer_home/buyer_home.html', {'title' : 'listings',
         'listings' : listings})
             
+
+def digital_contract(request):
+    return render(request, 'buyer_home/digital_contract.html')
 
 @ratelimit(key='ip', rate='10/m', block=True)
 def view_profile(request):
