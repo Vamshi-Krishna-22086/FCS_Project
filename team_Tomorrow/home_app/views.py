@@ -6,6 +6,7 @@ from django.contrib import messages
 from django.conf import settings
 from django.core.mail import send_mail
 import random
+import pyotp
 import requests
 
 
@@ -49,27 +50,34 @@ def user_ekyc(request):
 def landing_page(request):
     return render(request,'home/landing_page.html')
 
-def generate_random_otp():
-    return str(random.randint(1000, 9999))
-
 
 def registration_page(request):
     my_post = {}
-    my_post['mobile'] = request.POST['mobile']
-    phone_number=request.POST['mobile']
+    my_post['email'] = request.POST['email']
+    email=request.POST['email']
 
-    otp = generate_random_otp()
+    
+    #email start
 
-    # client = Client(settings.TWILIO_ACCOUNT_SID, settings.TWILIO_AUTH_TOKEN)
-    # message = client.messages.create(
-    #     body=f'Your OTP is: {otp}',
-    #     from_=settings.TWILIO_PHONE_NUMBER,
-    #     to=phone_number
-    # )
-    #otp generate end
+    otp = pyotp.TOTP(pyotp.random_base32())
+    otp_value = otp.now()
 
-    my_post['generate_otp'] = otp
-    print(otp)
+    # Save the OTP value in the user's session or database for later verification
+    my_post['generate_otp'] = otp_value
+
+    # Compose the email subject and message
+    subject = 'Your OTP for FCS authentication'
+    message = f'Your OTP is: {otp_value}'
+
+    # Sender's email
+    from_email = settings.EMAIL_HOST_USER
+
+    # Recipient's email
+    recipient_list = [email]
+
+    send_mail(subject, message, from_email, recipient_list)
+
+    #email end
 
     return render(request,'home/registration.html',my_post.copy())
 

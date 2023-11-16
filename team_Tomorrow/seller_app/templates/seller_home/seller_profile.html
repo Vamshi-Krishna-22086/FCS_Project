@@ -237,7 +237,7 @@
           <ul class="nav navbar-nav navbar-right">
             
 
-            <li>
+            <li class="active">
               <form method="POST" action="{% url 'seller-home1' %}">
                 {% csrf_token %}
                 <input type="hidden" name="username" value={{email}}>
@@ -245,8 +245,8 @@
               </form>
             </li>
             
-            <li class="active"><a href="#"> View Profile</a></li>
-            <li><a href="#">Logout</a></li>
+            {% comment %} <li class="active"><a href="#"> View Profile</a></li> {% endcomment %}
+            
           </ul>
         </div>
       </div>

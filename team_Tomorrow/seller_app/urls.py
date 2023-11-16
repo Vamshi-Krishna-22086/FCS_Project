@@ -22,6 +22,7 @@ urlpatterns = [
     path('' , views.seller_login , name='seller-login'),
     path('seller-home/', views.seller_home, name='seller-home'),
     path('seller-home1/', views.seller_home1, name='seller-home1'),
+    path('seller-logout/', views.seller_logout, name='seller-logout'),
     path('add-listing/', views.add_listing, name='add-listing'),
     path('delete-listing/', views.delete_listing, name='delete-listing'),
     path('edit-listing-page/', views.edit_listing_page, name='edit-listing-page'),
