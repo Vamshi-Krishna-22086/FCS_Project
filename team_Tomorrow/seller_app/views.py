@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.contrib.auth import logout
 
 
+
 def seller_login(request):
     return render(request,'seller_home/seller_login.html')
 
