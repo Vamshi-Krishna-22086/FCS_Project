@@ -34,7 +34,7 @@
 <body>
     <div class="container">
         {% include "home/message.html" %}
-        <h2>Enter Mobile no</h2>
+        <h2>Enter valid Email for OTP</h2>
         <form action="{% url 'registration_page' %}" method="post">
             {%csrf_token%}
             <input type="text" name="email" placeholder="Enter Email"  required>

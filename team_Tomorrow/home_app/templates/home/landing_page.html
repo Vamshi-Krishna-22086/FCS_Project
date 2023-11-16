@@ -100,12 +100,12 @@
                 <a href='{% url 'admin-login'%}'>Login as Admin</a>
                 <a href='{% url 'buyer_login'%}'>Login as Buyer</a>
                 <a href='{% url 'seller-login'%}'>Login as Seller</a>
-                <a href='{% url 'lesser-login'%}'>Login as Lesser</a>
+                <!-- <a href='{% url 'lesser-login'%}'>Login as Lesser</a> -->
               
             </div>
         </div>
 
-        <button onclick="location.href='{% url 'otp'%}'">Register</button> 
+        <button onclick="location.href='{% url 'user-ekyc'%}'">Register</button> 
         {% comment %} Register button is calling landing_page.html through home_app urls.py by name=registration_page {% endcomment %}
     </section>
 

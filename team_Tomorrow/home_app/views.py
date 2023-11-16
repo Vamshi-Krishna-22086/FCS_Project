@@ -35,16 +35,14 @@ def user_ekyc(request):
             # return JsonResponse(api_response)
 
             if api_response.get('status') == "success" : 
-                return redirect('register/')
+                return render(request,'home/otp.html')
             else :
                 # Display an error message on the login page
                 messages.error(request, '')
         else:
             # Handle the error if the API request fails
             messages.error(request, f'API request failed with status code: {response.status_code}')
-
-
-    return render(request, 'user_kyc.html')
+    return render(request, 'home/user_kyc.html')
 
 
 def landing_page(request):
