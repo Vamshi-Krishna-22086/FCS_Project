@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    'axes',
 ]
 
 MIDDLEWARE = [
@@ -67,7 +68,10 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    'axes.middleware.AxesMiddleware',
+    'buyer_app.middleware.ResourceLimitMiddleware'
 ]
+AUTHENTICATION_BACKENDS = ['axes.backends.AxesStandaloneBackend',]
 
 ROOT_URLCONF = "team_Tomorrow.urls"
 
@@ -144,3 +148,7 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 STATICFILES_DIR=[os.path.join(BASE_DIR,"static")]
+
+# axes settings
+AXES_LOGIN_FAILURE_LIMIT = 5
+AXES_LOCK_OUT_AT_FAILURE = True
